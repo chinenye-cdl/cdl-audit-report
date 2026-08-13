@@ -14,13 +14,12 @@ header h1{color:#fff;font-size:15px;font-weight:800;line-height:1.3;}
 .live-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 .mode-bar{background:#fff;border-bottom:2px solid #e2e8f0;padding:0 20px;display:flex;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
-.mode-btn{padding:12px 16px;font-size:11px;font-weight:700;color:#64748b;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+.mode-btn{padding:12px 14px;font-size:11px;font-weight:700;color:#64748b;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
 .mode-btn.active{color:#1e3a5f;border-bottom-color:#2563eb;}
-.container{max-width:840px;margin:24px auto;padding:0 16px;}
+.container{max-width:860px;margin:24px auto;padding:0 16px;}
 .date-bar{background:#fff;border:1px solid #bfdbfe;border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 4px rgba(30,58,95,0.06);}
 .date-bar label{font-size:10px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
 .date-bar input{flex:1;padding:7px 12px;border:1px solid #e2e8f0;border-radius:7px;font-size:13px;font-weight:600;color:#1e293b;background:#f8fafc;}
-.date-bar input:focus{outline:none;border-color:#2563eb;background:#fff;}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(30,58,95,0.06);}
 .card h2{font-size:14px;font-weight:800;color:#1e3a5f;margin-bottom:4px;}
 .card p.desc{font-size:11px;color:#64748b;margin-bottom:14px;line-height:1.5;}
@@ -49,6 +48,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
 .hidden{display:none;}
 .alert{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 16px;font-size:11px;color:#1d4ed8;margin-bottom:16px;line-height:1.6;}
 .alert.green{background:#f0fdf4;border-color:#bbf7d0;color:#15803d;}
+.alert.amber{background:#fffbeb;border-color:#fde68a;color:#92400e;}
 .tabs-inner{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
 .tib{padding:5px 12px;border-radius:99px;border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;}
 .tib.active{background:#1e3a5f;color:#fff;border-color:#1e3a5f;}
@@ -63,16 +63,35 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
 .li strong{color:#1e293b;}
 .empty-state{padding:24px;text-align:center;color:#94a3b8;font-size:12px;}
 .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.status-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;}
-.archive-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 4px rgba(30,58,95,0.05);}
+.archive-item{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;}
 .archive-date{flex:1;}
 .archive-date h3{font-size:13px;font-weight:800;color:#1e293b;}
 .archive-date p{font-size:10px;color:#94a3b8;margin-top:2px;}
-.archive-actions{display:flex;gap:8px;flex-shrink:0;}
 .bsm{padding:6px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:none;}
 .bv{background:#dbeafe;color:#1d4ed8;}
 .bdl{background:#dcfce7;color:#15803d;}
 .bdel{background:#fee2e2;color:#b91c1c;}
+/* Section selection checkboxes */
+.section-picks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.section-pick{display:flex;align-items:center;gap:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;cursor:pointer;transition:all .2s;}
+.section-pick:hover{background:#eff6ff;border-color:#bfdbfe;}
+.section-pick input[type=checkbox]{width:16px;height:16px;cursor:pointer;accent-color:#1e3a5f;}
+.section-pick label{font-size:12px;font-weight:600;color:#1e293b;cursor:pointer;}
+.section-pick.picked{background:#eff6ff;border-color:#1e3a5f;}
+/* Attachment */
+.attachment-zone{border:2px dashed #bfdbfe;border-radius:8px;padding:10px;margin-top:8px;text-align:center;cursor:pointer;transition:all .2s;background:#f8fafc;}
+.attachment-zone:hover{border-color:#2563eb;background:#eff6ff;}
+.attachment-zone p{font-size:11px;color:#64748b;}
+.attachment-preview{display:flex;align-items:center;gap:8px;margin-top:6px;background:#eff6ff;border-radius:6px;padding:6px 10px;}
+.attachment-preview span{font-size:11px;color:#1d4ed8;font-weight:600;flex:1;}
+.attachment-remove{background:none;border:none;color:#b91c1c;cursor:pointer;font-size:14px;font-weight:700;}
+/* Insights block */
+.insights-block{background:linear-gradient(135deg,#1e3a5f,#1e40af);border-radius:12px;padding:20px;margin-bottom:20px;}
+.insights-block h3{color:#93c5fd;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.insight-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+.insight-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.insight-text{font-size:12px;color:rgba(255,255,255,0.85);line-height:1.6;}
+.insight-text strong{color:#fff;}
 </style>
 </head>
 <body>
@@ -109,84 +128,135 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
     <div class="section-card" onclick="selectSection('litigation',this)" id="card-litigation"><div class="icon">⚖️</div><h3>Litigation</h3><p>Legal Team</p></div>
   </div>
 
+  <!-- EXEC -->
   <div id="section-exec" class="hidden">
-    <div class="card"><h2>📊 Executive Summary</h2><p class="desc">Saved items load automatically — edit anything, add new ones, remove items. Click Save when done.</p>
-    <div id="exec-findings"></div><button class="add-btn" onclick="addExecFinding()">+ Add Finding</button>
-    <div class="actions"><button class="btn-p" onclick="saveSection('exec')">💾 Save</button><button class="btn-d" onclick="clearSection('exec')">🗑 Clear All</button><span class="ss" id="ss-exec">✅ Saved!</span></div></div>
+    <div class="card">
+      <h2>📊 Executive Summary</h2>
+      <p class="desc">Enter each key finding. Add an optional attachment (image, PDF or PPT) to any finding.</p>
+      <div id="exec-findings"></div>
+      <button class="add-btn" onclick="addExecFinding()">+ Add Finding</button>
+      <div class="actions"><button class="btn-p" onclick="saveSection('exec')">💾 Save</button><button class="btn-d" onclick="clearSection('exec')">🗑 Clear All</button><span class="ss" id="ss-exec">✅ Saved!</span></div>
+    </div>
   </div>
 
+  <!-- ROBOT -->
   <div id="section-robot" class="hidden">
-    <div class="card"><h2>🤖 Underwriting Robot Assurance Review</h2><p class="desc">Enter the review period, metrics, findings and proposed actions.</p>
-    <label>Review Period</label><input type="text" id="robot-period" placeholder="e.g. 1st August – 6th August 2026"/>
-    <div class="row">
-      <div><label>Total Loans Approved</label><input type="text" id="robot-total" placeholder="e.g. 147"/></div>
-      <div><label>Loan Types Covered</label><input type="text" id="robot-types" placeholder="e.g. New Loans · Top-Ups (Federal & State)"/></div>
+    <div class="card">
+      <h2>🤖 Underwriting Robot Assurance Review</h2>
+      <p class="desc">Enter review period, metrics, findings and proposed action plan.</p>
+      <label>Review Period</label>
+      <input type="text" id="robot-period" placeholder="e.g. 1st August – 6th August 2026"/>
+      <div class="row">
+        <div><label>Total Loans Approved</label><input type="text" id="robot-total" placeholder="e.g. 147"/></div>
+        <div><label>Loan Types Covered</label><input type="text" id="robot-types" placeholder="e.g. New Loans · Top-Ups (Federal & State)"/></div>
+      </div>
+      <div class="row">
+        <div><label>Sample Reviewed</label><input type="text" id="robot-sample" placeholder="e.g. 20 of 147"/></div>
+        <div><label>Sample Loan Value</label><input type="text" id="robot-value" placeholder="e.g. ₦7,842,000"/></div>
+      </div>
+      <label style="margin-top:14px;">Key Findings</label>
+      <div id="robot-findings-list"></div>
+      <button class="add-btn" onclick="addRobotFinding()">+ Add Finding</button>
+      <label style="margin-top:14px;">Proposed Action Plan</label>
+      <textarea id="robot-action" placeholder="Summarise the proposed actions..."></textarea>
+      <div class="actions"><button class="btn-p" onclick="saveSection('robot')">💾 Save</button><button class="btn-d" onclick="clearSection('robot')">🗑 Clear All</button><span class="ss" id="ss-robot">✅ Saved!</span></div>
     </div>
-    <div class="row">
-      <div><label>Sample Reviewed</label><input type="text" id="robot-sample" placeholder="e.g. 20 of 147"/></div>
-      <div><label>Sample Loan Value</label><input type="text" id="robot-value" placeholder="e.g. ₦7,842,000"/></div>
-    </div>
-    <label style="margin-top:14px;">Key Findings</label>
-    <div id="robot-findings-list"></div><button class="add-btn" onclick="addRobotFinding()">+ Add Finding</button>
-    <label style="margin-top:14px;">Proposed Action Plan</label>
-    <textarea id="robot-action" placeholder="Summarise the proposed actions..."></textarea>
-    <div class="actions"><button class="btn-p" onclick="saveSection('robot')">💾 Save</button><button class="btn-d" onclick="clearSection('robot')">🗑 Clear All</button><span class="ss" id="ss-robot">✅ Saved!</span></div></div>
   </div>
 
+  <!-- INTERNAL -->
   <div id="section-internal" class="hidden">
-    <div class="card"><h2>🔎 Internal Audit Findings</h2><p class="desc">Saved items load automatically — edit or remove them. Add new ones as needed.</p>
-    <div id="internal-findings"></div><button class="add-btn" onclick="addAuditFinding('internal')">+ Add Finding</button>
-    <div class="actions"><button class="btn-p" onclick="saveSection('internal')">💾 Save</button><button class="btn-d" onclick="clearSection('internal')">🗑 Clear All</button><span class="ss" id="ss-internal">✅ Saved!</span></div></div>
+    <div class="card">
+      <h2>🔎 Internal Audit Findings</h2>
+      <p class="desc">Enter all internal audit findings. If nothing to report this week, leave empty and uncheck this section in Generate Report.</p>
+      <div id="internal-findings"></div>
+      <button class="add-btn" onclick="addAuditFinding('internal')">+ Add Finding</button>
+      <div class="actions"><button class="btn-p" onclick="saveSection('internal')">💾 Save</button><button class="btn-d" onclick="clearSection('internal')">🗑 Clear All</button><span class="ss" id="ss-internal">✅ Saved!</span></div>
+    </div>
   </div>
 
+  <!-- SYSTEMS -->
   <div id="section-systems" class="hidden">
-    <div class="card"><h2>🛡️ Systems & Security Findings</h2><p class="desc">Saved items load automatically — edit or remove them. Add new ones as needed.</p>
-    <div id="systems-findings"></div><button class="add-btn" onclick="addAuditFinding('systems')">+ Add Finding</button>
-    <div class="actions"><button class="btn-p" onclick="saveSection('systems')">💾 Save</button><button class="btn-d" onclick="clearSection('systems')">🗑 Clear All</button><span class="ss" id="ss-systems">✅ Saved!</span></div></div>
+    <div class="card">
+      <h2>🛡️ Systems & Security Findings</h2>
+      <p class="desc">Enter all systems audit findings. If nothing to report this week, leave empty and uncheck this section in Generate Report.</p>
+      <div id="systems-findings"></div>
+      <button class="add-btn" onclick="addAuditFinding('systems')">+ Add Finding</button>
+      <div class="actions"><button class="btn-p" onclick="saveSection('systems')">💾 Save</button><button class="btn-d" onclick="clearSection('systems')">🗑 Clear All</button><span class="ss" id="ss-systems">✅ Saved!</span></div>
+    </div>
   </div>
 
+  <!-- LEGAL -->
   <div id="section-legal" class="hidden">
-    <div class="card"><h2>📋 Legal, Compliance & Governance</h2><p class="desc">Saved items load automatically. Edit any field then click Save.</p>
-    <div class="tabs-inner">
-      <button class="tib active" onclick="switchLT('regulatory',this)">Regulatory</button>
-      <button class="tib" onclick="switchLT('legal-support',this)">Legal Support</button>
-      <button class="tib" onclick="switchLT('contracts',this)">Contracts</button>
-      <button class="tib" onclick="switchLT('enforcement',this)">Law Enforcement</button>
+    <div class="card">
+      <h2>📋 Legal, Compliance & Governance</h2>
+      <p class="desc">Fill in all regulatory, legal support, contracts and enforcement updates.</p>
+      <div class="tabs-inner">
+        <button class="tib active" onclick="switchLT('regulatory',this)">Regulatory</button>
+        <button class="tib" onclick="switchLT('legal-support',this)">Legal Support</button>
+        <button class="tib" onclick="switchLT('contracts',this)">Contracts</button>
+        <button class="tib" onclick="switchLT('enforcement',this)">Law Enforcement</button>
+      </div>
+      <div id="legal-regulatory">
+        <label>Material Regulatory Breaches This Week</label>
+        <textarea id="reg-breaches" placeholder="e.g. Nil within the week under review."></textarea>
+        <label>Policy / Governance Updates</label>
+        <textarea id="reg-policy" placeholder="e.g. Management Succession Plan Framework ongoing."></textarea>
+      </div>
+      <div id="legal-legal-support" class="hidden"><div id="legal-support-list"></div><button class="add-btn" onclick="addLegalItem('legal-support-list')">+ Add Legal Support Matter</button></div>
+      <div id="legal-contracts" class="hidden"><div id="contracts-list"></div><button class="add-btn" onclick="addLegalItem('contracts-list')">+ Add Contract</button></div>
+      <div id="legal-enforcement" class="hidden"><div id="enforcement-list"></div><button class="add-btn" onclick="addLegalItem('enforcement-list')">+ Add Item</button></div>
+      <div class="actions"><button class="btn-p" onclick="saveSection('legal')">💾 Save</button><button class="btn-d" onclick="clearSection('legal')">🗑 Clear All</button><span class="ss" id="ss-legal">✅ Saved!</span></div>
     </div>
-    <div id="legal-regulatory">
-      <label>Material Regulatory Breaches This Week</label>
-      <textarea id="reg-breaches" placeholder="e.g. Nil within the week under review."></textarea>
-      <label>Policy / Governance Updates</label>
-      <textarea id="reg-policy" placeholder="e.g. Management Succession Plan Framework ongoing."></textarea>
-    </div>
-    <div id="legal-legal-support" class="hidden"><div id="legal-support-list"></div><button class="add-btn" onclick="addLegalItem('legal-support-list')">+ Add Legal Support Matter</button></div>
-    <div id="legal-contracts" class="hidden"><div id="contracts-list"></div><button class="add-btn" onclick="addLegalItem('contracts-list')">+ Add Contract</button></div>
-    <div id="legal-enforcement" class="hidden"><div id="enforcement-list"></div><button class="add-btn" onclick="addLegalItem('enforcement-list')">+ Add Item</button></div>
-    <div class="actions"><button class="btn-p" onclick="saveSection('legal')">💾 Save</button><button class="btn-d" onclick="clearSection('legal')">🗑 Clear All</button><span class="ss" id="ss-legal">✅ Saved!</span></div></div>
   </div>
 
+  <!-- FINDINGS -->
   <div id="section-findings" class="hidden">
-    <div class="card"><h2>📁 Prior Findings — Status Update</h2><p class="desc">All 50 prior findings are pre-loaded. Update status, add "This Week" notes, or add new findings.</p>
-    <div id="prior-findings-list"></div><button class="add-btn" onclick="addPriorFinding()">+ Add New Finding</button>
-    <div class="actions"><button class="btn-p" onclick="saveSection('findings')">💾 Save</button><button class="btn-d" onclick="clearSection('findings')">🗑 Clear All</button><span class="ss" id="ss-findings">✅ Saved!</span></div></div>
+    <div class="card">
+      <h2>📁 Prior Findings — Status Update</h2>
+      <p class="desc">Update statuses and add new findings. The "Update This Week" field shows in the report as a green badge.</p>
+      <div id="prior-findings-list"></div>
+      <button class="add-btn" onclick="addPriorFinding()">+ Add / Update Finding</button>
+      <div class="actions"><button class="btn-p" onclick="saveSection('findings')">💾 Save</button><button class="btn-d" onclick="clearSection('findings')">🗑 Clear All</button><span class="ss" id="ss-findings">✅ Saved!</span></div>
+    </div>
   </div>
 
+  <!-- LITIGATION -->
   <div id="section-litigation" class="hidden">
-    <div class="card"><h2>⚖️ Litigation Portfolio</h2><p class="desc">All 11 cases are pre-loaded. Update hearing dates, statuses, or add new cases.</p>
-    <div id="litigation-list"></div><button class="add-btn" onclick="addLitigationCase()">+ Add New Case</button>
-    <div class="actions"><button class="btn-p" onclick="saveSection('litigation')">💾 Save</button><button class="btn-d" onclick="clearSection('litigation')">🗑 Clear All</button><span class="ss" id="ss-litigation">✅ Saved!</span></div></div>
+    <div class="card">
+      <h2>⚖️ Litigation Portfolio</h2>
+      <p class="desc">Update each case with the latest hearing date and status.</p>
+      <div id="litigation-list"></div>
+      <button class="add-btn" onclick="addLitigationCase()">+ Add Case</button>
+      <div class="actions"><button class="btn-p" onclick="saveSection('litigation')">💾 Save</button><button class="btn-d" onclick="clearSection('litigation')">🗑 Clear All</button><span class="ss" id="ss-litigation">✅ Saved!</span></div>
+    </div>
   </div>
 </div>
 
 <!-- LIVE VIEW -->
 <div id="view-mode" class="container hidden">
-  <div class="alert green"><strong>Live View</strong> — Updates every 30 seconds. See what everyone has submitted.</div>
+  <div class="alert green"><strong>Live View</strong> — Updates every 30 seconds.</div>
   <div id="live-view-content"><div class="empty-state">Loading...</div></div>
 </div>
 
 <!-- GENERATE MODE -->
 <div id="generate-mode" class="container hidden">
-  <div class="alert"><strong>Report Owner only.</strong> Confirm settings then click Generate. Report downloads AND auto-saves to Archive.</div>
+  <div class="alert"><strong>Report Owner only.</strong> Select which sections to include, confirm settings, then generate.</div>
+
+  <div class="card">
+    <h2>✅ Select Sections to Include</h2>
+    <p class="desc">Uncheck any section that has nothing to report this week — it won't appear in the generated report.</p>
+    <div class="section-picks">
+      <div class="section-pick picked" id="pick-exec"><input type="checkbox" id="chk-exec" checked onchange="togglePick('exec')"/><label for="chk-exec">📊 Executive Summary</label></div>
+      <div class="section-pick picked" id="pick-robot"><input type="checkbox" id="chk-robot" checked onchange="togglePick('robot')"/><label for="chk-robot">🤖 Robot Assurance Review</label></div>
+      <div class="section-pick picked" id="pick-internal"><input type="checkbox" id="chk-internal" checked onchange="togglePick('internal')"/><label for="chk-internal">🔎 Internal Audit</label></div>
+      <div class="section-pick picked" id="pick-systems"><input type="checkbox" id="chk-systems" checked onchange="togglePick('systems')"/><label for="chk-systems">🛡️ Systems & Security</label></div>
+      <div class="section-pick picked" id="pick-legal"><input type="checkbox" id="chk-legal" checked onchange="togglePick('legal')"/><label for="chk-legal">📋 Legal & Compliance</label></div>
+      <div class="section-pick picked" id="pick-findings"><input type="checkbox" id="chk-findings" checked onchange="togglePick('findings')"/><label for="chk-findings">📁 Prior Findings</label></div>
+      <div class="section-pick picked" id="pick-litigation"><input type="checkbox" id="chk-litigation" checked onchange="togglePick('litigation')"/><label for="chk-litigation">⚖️ Litigation Portfolio</label></div>
+      <div class="section-pick picked" id="pick-themes"><input type="checkbox" id="chk-themes" checked onchange="togglePick('themes')"/><label for="chk-themes">🎯 Thematic Analysis</label></div>
+    </div>
+  </div>
+
   <div class="card">
     <h2>📅 Report Settings</h2>
     <div class="settings-grid">
@@ -196,32 +266,42 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
       <div><label>Closed Findings</label><input type="number" id="ytd-closed" value="27"/></div>
     </div>
   </div>
+
   <div class="card">
     <h2>📦 Sections Ready</h2>
-    <p class="desc">Green = submitted · Grey = not yet filled</p>
-    <div class="status-grid" id="sections-status"></div>
+    <p class="desc">Green = data submitted · Grey = not yet filled</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;" id="sections-status"></div>
   </div>
+
   <button class="btn-generate" onclick="generateReport()">⚡ Generate & Save to Archive</button>
+
   <div class="card" style="margin-top:16px;background:#fffbeb;border-color:#fde68a;">
     <h2 style="color:#92400e;">🔄 Start a New Week</h2>
-    <p class="desc" style="color:#92400e;">Clears weekly sections only. Prior Findings and Litigation carry forward automatically.</p>
+    <p class="desc" style="color:#92400e;">Clears weekly sections only. Findings and litigation carry forward automatically.</p>
     <button class="btn-reset" onclick="resetForNewWeek()">🔄 Reset for New Week</button>
   </div>
 </div>
 
 <!-- ARCHIVE -->
 <div id="archive-mode" class="container hidden">
-  <div class="alert green"><strong>Report Archive</strong> — Every generated report is saved here. View, download or delete any past report.</div>
+  <div class="alert green"><strong>Report Archive</strong> — Every generated report is saved here automatically.</div>
   <div id="archive-list"><div class="empty-state">Loading archive...</div></div>
 </div>
 
 <script>
 const API='';
+let dbData={};
 let counts={exec:0,internal:0,systems:0,robot:0,findings:0,litigation:0};
 const lC={};
 
 function gv(id){const e=document.getElementById(id);return e?e.value:'';}
 function sv(id,val){const e=document.getElementById(id);if(e&&val!=null)e.value=val;}
+
+function togglePick(sec){
+  const chk=document.getElementById('chk-'+sec);
+  const pick=document.getElementById('pick-'+sec);
+  pick.classList.toggle('picked',chk.checked);
+}
 
 function switchMode(mode,btn){
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
@@ -244,6 +324,15 @@ function selectSection(sec,el){
   loadSection(sec);
 }
 
+function switchLT(tab,btn){
+  document.querySelectorAll('.tib').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['regulatory','legal-support','contracts','enforcement'].forEach(t=>
+    document.getElementById('legal-'+t).classList.add('hidden')
+  );
+  document.getElementById('legal-'+tab).classList.remove('hidden');
+}
+
 async function loadSection(sec){
   try{
     const res=await fetch(API+'/api/data');
@@ -251,17 +340,17 @@ async function loadSection(sec){
     if(sec==='exec'){
       document.getElementById('exec-findings').innerHTML='';counts.exec=0;
       (d.exec||[]).forEach(item=>addExecFinding(item));
-    } else if(sec==='internal'||sec==='systems'){
+    }else if(sec==='internal'||sec==='systems'){
       document.getElementById(sec+'-findings').innerHTML='';counts[sec]=0;
       (d[sec]||[]).forEach(item=>addAuditFinding(sec,item));
-    } else if(sec==='robot'){
+    }else if(sec==='robot'){
       const r=d.robot||{};
       sv('robot-period',r.reviewPeriod);sv('robot-total',r.totalLoans);
       sv('robot-types',r.loanTypes);sv('robot-sample',r.sampleReviewed);
       sv('robot-value',r.sampleValue);sv('robot-action',r.actionPlan);
       document.getElementById('robot-findings-list').innerHTML='';counts.robot=0;
       (r.findings||[]).forEach(f=>addRobotFinding(f));
-    } else if(sec==='legal'){
+    }else if(sec==='legal'){
       const l=d.legal||{};
       sv('reg-breaches',l.regulatory?.breaches);sv('reg-policy',l.regulatory?.policy);
       ['legal-support-list','contracts-list','enforcement-list'].forEach(cid=>{
@@ -270,10 +359,10 @@ async function loadSection(sec){
       (l.legalSupport||[]).forEach(i=>addLegalItem('legal-support-list',i));
       (l.contracts||[]).forEach(i=>addLegalItem('contracts-list',i));
       (l.enforcement||[]).forEach(i=>addLegalItem('enforcement-list',i));
-    } else if(sec==='findings'){
+    }else if(sec==='findings'){
       document.getElementById('prior-findings-list').innerHTML='';counts.findings=0;
       (d.findings||[]).forEach(item=>addPriorFinding(item));
-    } else if(sec==='litigation'){
+    }else if(sec==='litigation'){
       document.getElementById('litigation-list').innerHTML='';counts.litigation=0;
       (d.litigation||[]).forEach(item=>addLitigationCase(item));
     }
@@ -295,46 +384,81 @@ function removeAndSave(blockId,sec){
   saveSection(sec);
 }
 
-function switchLT(tab,btn){
-  document.querySelectorAll('.tib').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  ['regulatory','legal-support','contracts','enforcement'].forEach(t=>
-    document.getElementById('legal-'+t).classList.add('hidden')
-  );
-  document.getElementById('legal-'+tab).classList.remove('hidden');
+// ── Attachment handling ──
+function handleAttachment(inputId,previewId,dataId){
+  const input=document.getElementById(inputId);
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>5*1024*1024){alert('File too large. Maximum 5MB.');return;}
+  const reader=new FileReader();
+  reader.onload=function(e){
+    document.getElementById(dataId).value=JSON.stringify({name:file.name,type:file.type,data:e.target.result});
+    const preview=document.getElementById(previewId);
+    preview.innerHTML=`<div class="attachment-preview"><span>📎 ${file.name}</span><button class="attachment-remove" onclick="removeAttachment('${inputId}','${previewId}','${dataId}')">✕</button></div>`;
+  };
+  reader.readAsDataURL(file);
 }
 
+function removeAttachment(inputId,previewId,dataId){
+  document.getElementById(inputId).value='';
+  document.getElementById(dataId).value='';
+  document.getElementById(previewId).innerHTML='';
+}
+
+// ── Add blocks ──
 function addExecFinding(data={}){
   counts.exec++;const id=counts.exec;
   const div=document.createElement('div');div.className='finding-block';div.id='eb-'+id;
-  div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('eb-${id}','exec')">✕ Remove</button>
-    <label>Finding Title</label><input type="text" id="et-${id}" placeholder="e.g. Multiple Disbursement Anomaly"/>
-    <label>Summary</label><textarea id="es-${id}" placeholder="2–3 sentence summary..."></textarea>
+  div.innerHTML=`
+    <button class="remove-btn" onclick="removeAndSave('eb-${id}','exec')">✕ Remove</button>
+    <label>Finding Title</label>
+    <input type="text" id="et-${id}" placeholder="e.g. Multiple Disbursement Anomaly on the USSD Channel"/>
+    <label>Summary</label>
+    <textarea id="es-${id}" placeholder="2–3 sentence summary..."></textarea>
     <div class="row" style="margin-top:8px;">
       <div><label>Flag</label><select id="ef-${id}"><option>Management</option><option>Board</option></select></div>
       <div><label>Status</label><select id="ess-${id}"><option>Open</option><option>Closed</option></select></div>
     </div>
-    <label>Owner / Stakeholder</label><input type="text" id="eo-${id}" placeholder="e.g. Head, Engineering"/>`;
+    <label>Owner / Stakeholder</label>
+    <input type="text" id="eo-${id}" placeholder="e.g. Head, Engineering · Product Manager"/>
+    <label>Attachment <span style="color:#94a3b8;font-weight:400;text-transform:none;letter-spacing:0;">(optional — image, PDF or PPT, max 5MB)</span></label>
+    <div class="attachment-zone" onclick="document.getElementById('af-${id}').click()">
+      <p>📎 Click to attach a file</p>
+      <input type="file" id="af-${id}" style="display:none" accept="image/*,.pdf,.ppt,.pptx,.doc,.docx" onchange="handleAttachment('af-${id}','ap-${id}','ad-${id}')"/>
+    </div>
+    <div id="ap-${id}"></div>
+    <input type="hidden" id="ad-${id}"/>`;
   document.getElementById('exec-findings').appendChild(div);
   sv('et-'+id,data.title);sv('es-'+id,data.summary);sv('ef-'+id,data.flag);sv('ess-'+id,data.status);sv('eo-'+id,data.owner);
+  if(data.attachment){
+    const att=typeof data.attachment==='string'?JSON.parse(data.attachment):data.attachment;
+    document.getElementById('ad-'+id).value=JSON.stringify(att);
+    document.getElementById('ap-'+id).innerHTML=`<div class="attachment-preview"><span>📎 ${att.name}</span><button class="attachment-remove" onclick="removeAttachment('af-${id}','ap-${id}','ad-${id}')">✕</button></div>`;
+  }
 }
 
 function addRobotFinding(data={}){
   counts.robot++;const id=counts.robot;
   const div=document.createElement('div');div.className='finding-block';div.id='rf-b-'+id;
-  div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('rf-b-${id}','robot')">✕ Remove</button>
-    <label>Finding Title</label><input type="text" id="rf-t-${id}" placeholder="e.g. Missing Credit Reports"/>
-    <label>Finding Detail</label><textarea id="rf-d-${id}" placeholder="Describe the finding..."></textarea>
-    <label>Finding Meta (e.g. 20 loans · ₦7,842,000)</label><input type="text" id="rf-m-${id}" placeholder="e.g. 20 loans · ₦7,842,000"/>
-    <label>Proposed Action</label><textarea id="rf-a-${id}" placeholder="Describe the proposed action..."></textarea>`;
+  div.innerHTML=`
+    <button class="remove-btn" onclick="removeAndSave('rf-b-${id}','robot')">✕ Remove</button>
+    <label>Finding Title</label>
+    <input type="text" id="rf-t-${id}" placeholder="e.g. Missing Credit Reports"/>
+    <label>Loan Count & Value</label>
+    <input type="text" id="rf-m-${id}" placeholder="e.g. 20 loans · ₦7,842,000"/>
+    <label>Finding Detail</label>
+    <textarea id="rf-d-${id}" placeholder="What did the review find?"></textarea>
+    <label>Proposed Action</label>
+    <textarea id="rf-a-${id}" placeholder="What should be done?"></textarea>`;
   document.getElementById('robot-findings-list').appendChild(div);
-  sv('rf-t-'+id,data.title);sv('rf-d-'+id,data.detail);sv('rf-m-'+id,data.meta);sv('rf-a-'+id,data.action);
+  sv('rf-t-'+id,data.title);sv('rf-m-'+id,data.meta);sv('rf-d-'+id,data.detail);sv('rf-a-'+id,data.action);
 }
 
 function addAuditFinding(sec,data={}){
   counts[sec]=(counts[sec]||0)+1;const id=counts[sec];
   const div=document.createElement('div');div.className='finding-block';div.id=sec+'-b-'+id;
-  div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('${sec}-b-${id}','${sec}')">✕ Remove</button>
+  div.innerHTML=`
+    <button class="remove-btn" onclick="removeAndSave('${sec}-b-${id}','${sec}')">✕ Remove</button>
     <label>Finding Title</label><input type="text" id="${sec}-t-${id}" placeholder="Short descriptive title"/>
     <div class="row">
       <div><label>Risk Level</label><select id="${sec}-r-${id}"><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select></div>
@@ -343,7 +467,7 @@ function addAuditFinding(sec,data={}){
     <label>Finding Detail</label><textarea id="${sec}-d-${id}" placeholder="What was found?"></textarea>
     <label>Risk / Business Impact</label><textarea id="${sec}-i-${id}" placeholder="What could go wrong?"></textarea>
     <label>Proposed Action</label><textarea id="${sec}-a-${id}" placeholder="What should be done?"></textarea>
-    <label>Owner / Stakeholder</label><input type="text" id="${sec}-o-${id}" placeholder="e.g. Head, Infrastructure"/>`;
+    <label>Owner / Stakeholder</label><input type="text" id="${sec}-o-${id}" placeholder="e.g. Head, Infrastructure & Cloud Services"/>`;
   document.getElementById(sec+'-findings').appendChild(div);
   sv(sec+'-t-'+id,data.title);sv(sec+'-r-'+id,data.risk);sv(sec+'-f-'+id,data.flag);
   sv(sec+'-d-'+id,data.detail);sv(sec+'-i-'+id,data.impact);sv(sec+'-a-'+id,data.action);sv(sec+'-o-'+id,data.owner);
@@ -352,7 +476,8 @@ function addAuditFinding(sec,data={}){
 function addLegalItem(cid,data={}){
   lC[cid]=(lC[cid]||0)+1;const id=lC[cid];
   const div=document.createElement('div');div.className='finding-block';div.id=cid+'-b-'+id;
-  div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('${cid}-b-${id}','legal')">✕ Remove</button>
+  div.innerHTML=`
+    <button class="remove-btn" onclick="removeAndSave('${cid}-b-${id}','legal')">✕ Remove</button>
     <label>Title</label><input type="text" id="${cid}-t-${id}" placeholder="Brief title"/>
     <label>Detail / Update</label><textarea id="${cid}-d-${id}" placeholder="Current status or update?"></textarea>
     <div class="row">
@@ -366,7 +491,8 @@ function addLegalItem(cid,data={}){
 function addPriorFinding(data={}){
   counts.findings++;const id=counts.findings;
   const div=document.createElement('div');div.className='finding-block';div.id='pf-b-'+id;
-  div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('pf-b-${id}','findings')">✕ Remove</button>
+  div.innerHTML=`
+    <button class="remove-btn" onclick="removeAndSave('pf-b-${id}','findings')">✕ Remove</button>
     <label>Finding Title</label><input type="text" id="pf-t-${id}" placeholder="Finding title"/>
     <div class="row3">
       <div><label>Division</label><select id="pf-c-${id}"><option>Technology</option><option>Operations</option><option>Finance</option><option>Legal</option></select></div>
@@ -388,7 +514,8 @@ function addPriorFinding(data={}){
 function addLitigationCase(data={}){
   counts.litigation++;const id=counts.litigation;
   const div=document.createElement('div');div.className='finding-block';div.id='lit-b-'+id;
-  div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('lit-b-${id}','litigation')">✕ Remove</button>
+  div.innerHTML=`
+    <button class="remove-btn" onclick="removeAndSave('lit-b-${id}','litigation')">✕ Remove</button>
     <label>Case Name</label><input type="text" id="lit-c-${id}" placeholder="e.g. Aminu Abdulaminu v. Credit Direct"/>
     <div class="row">
       <div><label>Year Filed</label><input type="text" id="lit-y-${id}" placeholder="e.g. 2022"/></div>
@@ -404,15 +531,40 @@ function addLitigationCase(data={}){
   sv('lit-cl-'+id,data.claim);sv('lit-l-'+id,data.liability);sv('lit-s-'+id,data.status);
 }
 
+// ── Collect data ──
 function collectData(sec){
-  if(sec==='exec')return[...document.querySelectorAll('[id^="eb-"]')].map(b=>{const id=b.id.replace('eb-','');return{title:gv('et-'+id),summary:gv('es-'+id),flag:gv('ef-'+id),status:gv('ess-'+id),owner:gv('eo-'+id)};});
+  if(sec==='exec'){
+    return[...document.querySelectorAll('[id^="eb-"]')].map(b=>{
+      const id=b.id.replace('eb-','');
+      const adv=gv('ad-'+id);
+      return{title:gv('et-'+id),summary:gv('es-'+id),flag:gv('ef-'+id),status:gv('ess-'+id),owner:gv('eo-'+id),attachment:adv?JSON.parse(adv):null};
+    });
+  }
   if(sec==='robot'){
-    const findings=[...document.querySelectorAll('[id^="rf-b-"]')].map(b=>{const id=b.id.replace('rf-b-','');return{title:gv('rf-t-'+id),detail:gv('rf-d-'+id),meta:gv('rf-m-'+id),action:gv('rf-a-'+id)};});
+    const findings=[...document.querySelectorAll('[id^="rf-b-"]')].map(b=>{
+      const id=b.id.replace('rf-b-','');
+      return{title:gv('rf-t-'+id),meta:gv('rf-m-'+id),detail:gv('rf-d-'+id),action:gv('rf-a-'+id)};
+    });
     return{reviewPeriod:gv('robot-period'),totalLoans:gv('robot-total'),loanTypes:gv('robot-types'),sampleReviewed:gv('robot-sample'),sampleValue:gv('robot-value'),findings,actionPlan:gv('robot-action')};
   }
-  if(sec==='internal'||sec==='systems')return[...document.querySelectorAll(`[id^="${sec}-b-"]`)].map(b=>{const id=b.id.replace(sec+'-b-','');return{title:gv(sec+'-t-'+id),risk:gv(sec+'-r-'+id),flag:gv(sec+'-f-'+id),detail:gv(sec+'-d-'+id),impact:gv(sec+'-i-'+id),action:gv(sec+'-a-'+id),owner:gv(sec+'-o-'+id)};});
-  if(sec==='findings')return[...document.querySelectorAll('[id^="pf-b-"]')].map(b=>{const id=b.id.replace('pf-b-','');return{title:gv('pf-t-'+id),cat:gv('pf-c-'+id),status:gv('pf-s-'+id),flag:gv('pf-f-'+id),days:gv('pf-d-'+id),owner:gv('pf-o-'+id),risk:gv('pf-r-'+id),action:gv('pf-a-'+id),update:gv('pf-u-'+id)};});
-  if(sec==='litigation')return[...document.querySelectorAll('[id^="lit-b-"]')].map(b=>{const id=b.id.replace('lit-b-','');return{case:gv('lit-c-'+id),year:gv('lit-y-'+id),type:gv('lit-tp-'+id),claim:gv('lit-cl-'+id),liability:gv('lit-l-'+id),status:gv('lit-s-'+id)};});
+  if(sec==='internal'||sec==='systems'){
+    return[...document.querySelectorAll(`[id^="${sec}-b-"]`)].map(b=>{
+      const id=b.id.replace(sec+'-b-','');
+      return{title:gv(sec+'-t-'+id),risk:gv(sec+'-r-'+id),flag:gv(sec+'-f-'+id),detail:gv(sec+'-d-'+id),impact:gv(sec+'-i-'+id),action:gv(sec+'-a-'+id),owner:gv(sec+'-o-'+id)};
+    });
+  }
+  if(sec==='findings'){
+    return[...document.querySelectorAll('[id^="pf-b-"]')].map(b=>{
+      const id=b.id.replace('pf-b-','');
+      return{title:gv('pf-t-'+id),cat:gv('pf-c-'+id),status:gv('pf-s-'+id),flag:gv('pf-f-'+id),days:gv('pf-d-'+id),owner:gv('pf-o-'+id),risk:gv('pf-r-'+id),action:gv('pf-a-'+id),update:gv('pf-u-'+id)};
+    });
+  }
+  if(sec==='litigation'){
+    return[...document.querySelectorAll('[id^="lit-b-"]')].map(b=>{
+      const id=b.id.replace('lit-b-','');
+      return{case:gv('lit-c-'+id),year:gv('lit-y-'+id),type:gv('lit-tp-'+id),claim:gv('lit-cl-'+id),liability:gv('lit-l-'+id),status:gv('lit-s-'+id)};
+    });
+  }
   if(sec==='legal'){
     const ls=[...document.querySelectorAll('[id^="legal-support-list-b-"]')].map(b=>{const id=b.id.replace('legal-support-list-b-','');return{title:gv('legal-support-list-t-'+id),detail:gv('legal-support-list-d-'+id),status:gv('legal-support-list-s-'+id),owner:gv('legal-support-list-o-'+id)};});
     const ct=[...document.querySelectorAll('[id^="contracts-list-b-"]')].map(b=>{const id=b.id.replace('contracts-list-b-','');return{title:gv('contracts-list-t-'+id),detail:gv('contracts-list-d-'+id),status:gv('contracts-list-s-'+id),owner:gv('contracts-list-o-'+id)};});
@@ -439,160 +591,191 @@ async function clearSection(sec){
   loadSection(sec);
 }
 
-async function loadLiveView(){
-  try{
-    const res=await fetch(API+'/api/data');
-    const d=await res.json();
-    const secs=[
-      {k:'exec',l:'📊 Executive Summary',items:(d.exec||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.summary||''} <em style="color:#94a3b8;">(${f.flag})</em></div>`)},
-      {k:'robot',l:'🤖 Robot Assurance Review',items:d.robot?.reviewPeriod?[`<div class="li"><strong>Period:</strong> ${d.robot.reviewPeriod} · <strong>Loans:</strong> ${d.robot.totalLoans} · <strong>Sample:</strong> ${d.robot.sampleReviewed}</div>`,...(d.robot.findings||[]).map(f=>`<div class="li">${f.title} — ${f.meta||''}</div>`)]:[]},
-      {k:'internal',l:'🔎 Internal Audit',items:(d.internal||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.risk} Risk</div>`)},
-      {k:'systems',l:'🛡️ Systems & Security',items:(d.systems||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.risk} Risk</div>`)},
-      {k:'legal',l:'📋 Legal & Compliance',items:d.legal?.regulatory?[`<div class="li"><strong>Breaches:</strong> ${d.legal.regulatory.breaches||'None specified'}</div>`,...(d.legal.legalSupport||[]).map(i=>`<div class="li">${i.title}</div>`),...(d.legal.contracts||[]).map(i=>`<div class="li">${i.title} (${i.status})</div>`)]:[]},
-      {k:'findings',l:'📁 Prior Findings',items:(d.findings||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — <span style="color:${f.status==='Closed'?'#15803d':'#b91c1c'}">${f.status}</span> · ${f.days||'0'}d${f.update?' · <em>'+f.update+'</em>':''}</div>`)},
-      {k:'litigation',l:'⚖️ Litigation',items:(d.litigation||[]).map(f=>`<div class="li"><strong>${f.case}</strong> · ${f.liability||'TBD'} · ${f.status}</div>`)},
-    ];
-    document.getElementById('live-view-content').innerHTML=secs.map(s=>`
-      <div class="live-section">
-        <div class="lsh"><h3>${s.l}</h3><span class="lc">${s.items.length} item${s.items.length!==1?'s':''}</span></div>
-        ${s.items.length?s.items.join(''):'<div class="empty-state">Not yet submitted</div>'}
-      </div>`).join('');
-  }catch(e){document.getElementById('live-view-content').innerHTML='<div class="empty-state">Could not load data.</div>';}
+// ── AI Insights (rule-based) ──
+function generateInsights(d,ytdTotal,ytdOpen,ytdClosed,selectedSections){
+  const findings=d.findings||[];
+  const exec=d.exec||[];
+  const litigation=d.litigation||[];
+  const robot=d.robot||{};
+  const internal=d.internal||[];
+  const systems=d.systems||[];
+
+  const openFindings=findings.filter(f=>f.status==='Open');
+  const closedFindings=findings.filter(f=>f.status==='Closed');
+  const overdueFindings=openFindings.filter(f=>f.days&&parseInt(f.days)>=120);
+  const techFindings=openFindings.filter(f=>f.cat==='Technology');
+  const opsFindings=openFindings.filter(f=>f.cat==='Operations');
+  const updatedFindings=findings.filter(f=>f.update&&f.update.trim()!=='');
+  const deductionCases=litigation.filter(l=>l.type==='deduction');
+  const openRate=ytdTotal>0?Math.round((ytdOpen/ytdTotal)*100):0;
+  const closeRate=100-openRate;
+
+  const insights=[];
+
+  // Insight 1 — open/closed ratio
+  if(openRate>50){
+    insights.push({icon:'🔴',text:`<strong>${openRate}% of all YTD findings remain open.</strong> More than half the portfolio is unresolved — remediation velocity needs to accelerate.`});
+  }else{
+    insights.push({icon:'🟢',text:`<strong>${closeRate}% of findings have been closed YTD.</strong> Remediation is tracking well — the team is resolving more than it is raising.`});
+  }
+
+  // Insight 2 — overdue
+  if(overdueFindings.length>0){
+    insights.push({icon:'⚠️',text:`<strong>${overdueFindings.length} finding${overdueFindings.length>1?'s are':' is'} over 120 days open</strong> without resolution. These represent the highest escalation risk and require immediate management attention.`});
+  }
+
+  // Insight 3 — technology concentration
+  if(techFindings.length>0){
+    const techPct=Math.round((techFindings.length/openFindings.length)*100);
+    insights.push({icon:'💻',text:`<strong>Technology owns ${techFindings.length} of ${openFindings.length} open findings (${techPct}%)</strong> — the single largest concentration. A systemic remediation programme, not individual fixes, is needed.`});
+  }
+
+  // Insight 4 — this week's new findings
+  if(exec.length>0){
+    insights.push({icon:'📋',text:`<strong>${exec.length} new finding${exec.length>1?'s were':' was'} raised this week</strong> across the audit sections. ${exec.filter(f=>f.flag==='Board').length>0?'At least one is flagged for Board-level reporting.':'All are flagged for Management reporting.'}`});
+  }
+
+  // Insight 5 — robot assurance
+  if(robot.reviewPeriod&&robot.totalLoans&&robot.sampleReviewed){
+    const sampleNum=parseInt(robot.sampleReviewed)||0;
+    const totalNum=parseInt(robot.totalLoans)||0;
+    const samplePct=totalNum>0?Math.round((sampleNum/totalNum)*100):0;
+    insights.push({icon:'🤖',text:`<strong>The underwriting robot approved ${robot.totalLoans} loans this period.</strong> A ${samplePct}% sample (${robot.sampleReviewed} loans) was reviewed, revealing ${robot.findings?.length||0} finding${(robot.findings?.length||0)!==1?'s':''} requiring remediation.`});
+  }
+
+  // Insight 6 — litigation
+  if(deductionCases.length>0){
+    insights.push({icon:'⚖️',text:`<strong>${deductionCases.length} of ${litigation.length} active litigation cases relate to over-deductions</strong> — all traceable to the same unresolved operational control failures. Legal exposure grows each week these controls remain open.`});
+  }
+
+  // Insight 7 — updates this week
+  if(updatedFindings.length>0){
+    const closed=updatedFindings.filter(f=>f.update&&f.update.toLowerCase().includes('closed'));
+    insights.push({icon:'✅',text:`<strong>${updatedFindings.length} prior finding${updatedFindings.length>1?'s were':' was'} updated this week${closed.length>0?', including '+closed.length+' marked as closed':''}</strong>. Progress is being recorded — ensure all updates are verified before the report is presented.`});
+  }
+
+  // Insight 8 — internal/systems this week
+  const newWeekFindings=internal.length+systems.length;
+  if(newWeekFindings>0){
+    const criticals=[...internal,...systems].filter(f=>f.risk==='Critical');
+    if(criticals.length>0){
+      insights.push({icon:'🚨',text:`<strong>${criticals.length} Critical-risk finding${criticals.length>1?'s were':' was'} raised this week</strong> across Internal Audit and Systems & Security. These require immediate escalation and cannot wait for the next reporting cycle.`});
+    }
+  }
+
+  return insights;
 }
 
-async function loadGenerateStatus(){
-  const res=await fetch(API+'/api/data');
-  const d=await res.json();
-  const secs=[
-    {k:'exec',l:'Executive Summary',ok:d=>d?.length>0},
-    {k:'robot',l:'Robot Assurance Review',ok:d=>!!d?.reviewPeriod},
-    {k:'internal',l:'Internal Audit',ok:d=>d?.length>0},
-    {k:'systems',l:'Systems & Security',ok:d=>d?.length>0},
-    {k:'legal',l:'Legal & Compliance',ok:d=>!!d?.regulatory},
-    {k:'findings',l:'Prior Findings',ok:d=>d?.length>0},
-    {k:'litigation',l:'Litigation',ok:d=>d?.length>0},
-  ];
-  document.getElementById('sections-status').innerHTML=secs.map(s=>{
-    const done=s.ok(d[s.k]);
-    return`<div style="background:${done?'#f0fdf4':'#f8fafc'};border:1px solid ${done?'#bbf7d0':'#e2e8f0'};border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:7px;"><span>${done?'✅':'⏳'}</span><span style="font-size:11px;font-weight:700;color:${done?'#15803d':'#64748b'};">${s.l}</span></div>`;
-  }).join('');
-}
-
+// ── Generate Report ──
 async function generateReport(){
   const res=await fetch(API+'/api/data');
   const d=await res.json();
-  const date=gv('report-date'),ytdTotal=gv('ytd-total'),ytdOpen=gv('ytd-open'),ytdClosed=gv('ytd-closed');
-  const exec=d.exec||[],internal=d.internal||[],systems=d.systems||[],
-        robot=d.robot||{},legal=d.legal||{},findings=d.findings||[],litigation=d.litigation||[];
+  const date=gv('report-date'),ytdTotal=parseInt(gv('ytd-total')),ytdOpen=parseInt(gv('ytd-open')),ytdClosed=parseInt(gv('ytd-closed'));
+  const exec=d.exec||[],internal=d.internal||[],systems=d.systems||[],robot=d.robot||{},legal=d.legal||{},findings=d.findings||[],litigation=d.litigation||[];
 
-  const openPct=Math.round((parseInt(ytdOpen)/parseInt(ytdTotal))*100);
-  const closedPct=100-openPct;
+  // Selected sections
+  const sel={
+    exec:document.getElementById('chk-exec').checked,
+    robot:document.getElementById('chk-robot').checked,
+    themes:document.getElementById('chk-themes').checked,
+    internal:document.getElementById('chk-internal').checked,
+    systems:document.getElementById('chk-systems').checked,
+    legal:document.getElementById('chk-legal').checked,
+    findings:document.getElementById('chk-findings').checked,
+    litigation:document.getElementById('chk-litigation').checked,
+  };
 
-  // ── Build exec items HTML ──
-  const execHTML=exec.map((f,i)=>`
-  <div class="exec-item" style="border-left:4px solid ${f.flag==='Board'?'#7c3aed':'#2563eb'};">
-    <div class="exec-header" onclick="tog('ex${i}','chex${i}')">
-      <span class="exec-badge mgmt">${f.flag.toUpperCase()}</span>
-      <div class="exec-title">${f.title}</div>
-      <span class="chevron" id="chex${i}">▼</span>
-    </div>
-    <div class="exec-body" id="ex${i}">
-      <p>${f.summary}</p>
-      <p style="margin-top:10px;color:#2563eb;font-size:11px;font-weight:700;">→ ${f.owner}</p>
-    </div>
-  </div>`).join('');
+  // Build sidebar nav
+  const navLinks=[];
+  if(sel.exec)navLinks.push(`<a href="#" class="active" onclick="show('exec',this)"><span class="icon">📊</span> Executive Summary</a>`);
+  if(sel.themes)navLinks.push(`<a href="#" onclick="show('themes',this)"><span class="icon">🎯</span> Thematic Analysis</a>`);
+  const hasAudit=sel.internal||sel.systems||sel.robot;
+  if(hasAudit)navLinks.push(`<div class="nav-group">Sections</div>`);
+  if(sel.robot)navLinks.push(`<a href="#" onclick="show('robot',this)"><span class="icon">🤖</span> Robot Assurance</a>`);
+  if(sel.internal)navLinks.push(`<a href="#" onclick="show('internal',this)"><span class="icon">🔎</span> Internal Audit</a>`);
+  if(sel.systems)navLinks.push(`<a href="#" onclick="show('systems',this)"><span class="icon">🛡️</span> Systems & Security</a>`);
+  if(sel.legal)navLinks.push(`<a href="#" onclick="show('legalcomp',this)"><span class="icon">📋</span> Legal & Compliance</a>`);
+  if(sel.findings||sel.litigation)navLinks.push(`<div class="nav-group">Tracking</div>`);
+  if(sel.findings)navLinks.push(`<a href="#" onclick="show('findings',this)"><span class="icon">📁</span> Prior Findings</a>`);
+  if(sel.litigation)navLinks.push(`<a href="#" onclick="show('litigation',this)"><span class="icon">⚖️</span> Litigation Portfolio</a>`);
 
-  // ── Robot block — exact format of August 11 report ──
+  // Generate AI insights
+  const insights=generateInsights(d,ytdTotal,ytdOpen,ytdClosed,sel);
+  const insightsHTML=insights.length?`
+    <div class="insights-block">
+      <h3>🧠 AI Insights — Week ending ${date}</h3>
+      ${insights.map(i=>`<div class="insight-row"><span class="insight-icon">${i.icon}</span><div class="insight-text">${i.text}</div></div>`).join('')}
+    </div>`:'';
+
+  // Exec items
+  const execHTML=exec.map((f,i)=>{
+    const att=f.attachment;
+    const attHTML=att?`<div style="margin-top:12px;"><div style="font-size:10px;color:#2563eb;font-weight:700;text-transform:uppercase;margin-bottom:6px;">Attachment</div>${att.type&&att.type.startsWith('image/')?`<img src="${att.data}" style="max-width:100%;border-radius:8px;border:1px solid #e2e8f0;" alt="${att.name}"/>`:`<a href="${att.data}" download="${att.name}" style="display:inline-flex;align-items:center;gap:6px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:8px 12px;font-size:11px;font-weight:700;color:#1d4ed8;text-decoration:none;">📎 ${att.name}</a>`}</div>`:'';
+    return`<div class="exec-item" style="border-left:4px solid ${f.flag==='Board'?'#7c3aed':'#2563eb'};"><div class="exec-header" onclick="toggleExec('ex${i}','chex${i}')"><span class="exec-badge ${f.flag==='Board'?'board':'mgmt'}">${f.flag.toUpperCase()}</span><div class="exec-title">${f.title}</div><span class="chevron" id="chex${i}">▼</span></div><div class="exec-body" id="ex${i}"><p>${f.summary}</p>${attHTML}<p style="margin-top:10px;color:#2563eb;font-size:11px;font-weight:700;">→ ${f.owner}</p></div></div>`;
+  }).join('');
+
+  // Robot block
   const robotFindings=robot.findings||[];
-  const robotHTML=robot.reviewPeriod?`
-  <div class="green-banner" style="margin-top:24px;"><span class="icon">🤖</span><span>Underwriting Robot Assurance Review — ${robot.reviewPeriod}</span></div>
-  <div class="robot-block">
-    <div class="robot-header">
-      <div class="robot-header-title">Underwriting Robot Assurance Review</div>
-      <div class="robot-header-period">Review Period: ${robot.reviewPeriod}</div>
-    </div>
-    <div class="robot-stats">
-      <div class="robot-stat"><div class="rv">${robot.totalLoans||'—'}</div><div class="rl">Total Loans Approved</div><div class="rs">Full portfolio</div></div>
-      <div class="robot-stat"><div class="rv">2</div><div class="rl">Loan Types Covered</div><div class="rs">${robot.loanTypes||'—'}</div></div>
-      <div class="robot-stat"><div class="rv">${robot.sampleReviewed||'—'}</div><div class="rl">Loans Sample Reviewed</div><div class="rs">of ${robot.totalLoans||'—'} total</div></div>
-      <div class="robot-stat"><div class="rv" style="font-size:18px;">${robot.sampleValue||'—'}</div><div class="rl">Sample Loan Value</div><div class="rs">&nbsp;</div></div>
-    </div>
-    <div class="robot-col-labels">
-      <div class="robot-col-label">Key Findings</div>
-      <div class="robot-col-label">Proposed Action Plan</div>
-    </div>
-    <div class="robot-findings">
-      <div class="robot-finding-col">
-        ${robotFindings.map((f,i)=>`
-          <div class="robot-finding-item">
-            <div class="robot-finding-title">${f.title}</div>
-            <div class="robot-finding-meta">${f.meta||''}</div>
-            <div class="robot-finding-body">${f.detail}</div>
-          </div>
-          ${i<robotFindings.length-1?'<div style="border-top:1px solid #f1f5f9;margin:14px 0;"></div>':''}`).join('')}
+  const robotHTML=sel.robot&&robot.reviewPeriod?`
+    <div class="green-banner" style="margin-top:24px;"><span class="icon">🤖</span><span>Underwriting Robot Assurance Review — ${robot.reviewPeriod}</span></div>
+    <div class="robot-block">
+      <div class="robot-header"><div class="robot-header-title">Underwriting Robot Assurance Review</div><div class="robot-header-period">Review Period: ${robot.reviewPeriod}</div></div>
+      <div class="robot-stats">
+        <div class="robot-stat"><div class="rv">${robot.totalLoans||'—'}</div><div class="rl">Total Loans Approved</div><div class="rs">Full portfolio</div></div>
+        <div class="robot-stat"><div class="rv">2</div><div class="rl">Loan Types Covered</div><div class="rs">${robot.loanTypes||'—'}</div></div>
+        <div class="robot-stat"><div class="rv">${robot.sampleReviewed||'—'}</div><div class="rl">Loans Sample Reviewed</div><div class="rs">of ${robot.totalLoans||'—'} total</div></div>
+        <div class="robot-stat"><div class="rv" style="font-size:18px;">${robot.sampleValue||'—'}</div><div class="rl">Sample Loan Value</div><div class="rs">&nbsp;</div></div>
       </div>
-      <div class="robot-finding-col">
-        ${robotFindings.map((f,i)=>`
-          <div class="robot-finding-item">
-            <div class="robot-action-body">${f.action}</div>
-          </div>
-          ${i<robotFindings.length-1?'<div style="border-top:1px solid #f1f5f9;margin:14px 0;"></div>':''}`).join('')}
-      </div>
-    </div>
-  </div>`:'';
-
-  // ── Audit section builder ──
-  function auditSection(items,sec){
-    if(!items.length)return'<p style="color:#94a3b8;font-size:12px;padding:16px;">No findings submitted this week.</p>';
-    return items.map((f,i)=>`
-    <div class="audit-item" style="${f.risk==='Critical'?'border-left:4px solid #c0392b;':''}">
-      <div class="audit-header" onclick="tog('ab${sec}${i}','ac${sec}${i}')" style="${f.risk==='Critical'?'background:#fff5f5;':''}">
-        <span class="audit-icon">${f.risk==='Critical'?'⚠️':'🔎'}</span>
-        <div class="audit-title"><h4>${f.title}</h4><p>${sec} · ${f.flag}</p></div>
-        <span class="tag mgmt2">${f.risk} Risk</span>
-        <span class="chevron" id="ac${sec}${i}">▼</span>
-      </div>
-      <div class="audit-body" id="ab${sec}${i}" style="${f.risk==='Critical'?'background:#fff5f5;':''}">
-        <span class="risk-badge ${f.risk==='Critical'?'critical':'high'}">${f.risk} Risk</span>
-        <div class="audit-grid">
-          <div class="audit-field"><label>Finding</label><p>${f.detail}</p></div>
-          <div class="audit-field"><label>Risk / Impact</label><p>${f.impact}</p></div>
-          <div class="audit-field"><label>Proposed Action</label><p>${f.action}</p></div>
-          <div class="audit-field"><label>Owner</label><p>${f.owner}</p></div>
+      <div class="robot-col-labels"><div class="robot-col-label">Key Findings</div><div class="robot-col-label">Proposed Action Plan</div></div>
+      <div class="robot-findings">
+        <div class="robot-finding-col">
+          ${robotFindings.map((f,i)=>`<div class="robot-finding-item"><div class="robot-finding-title">${f.title}</div><div class="robot-finding-meta">${f.meta||''}</div><div class="robot-finding-body">${f.detail}</div></div>${i<robotFindings.length-1?'<div style="border-top:1px solid #f1f5f9;margin:14px 0;"></div>':''}`).join('')}
+        </div>
+        <div class="robot-finding-col">
+          ${robotFindings.map((f,i)=>`<div class="robot-finding-item"><div class="robot-action-body">${f.action}</div></div>${i<robotFindings.length-1?'<div style="border-top:1px solid #f1f5f9;margin:14px 0;"></div>':''}`).join('')}
         </div>
       </div>
-    </div>`).join('');
+    </div>`:'';
+
+  function auditSection(items,sec){
+    if(!items.length)return'<p style="color:#94a3b8;font-size:12px;padding:16px;">No findings submitted.</p>';
+    return items.map((f,i)=>`<div class="audit-item" style="${f.risk==='Critical'?'border-left:4px solid #c0392b;':''}"><div class="audit-header" onclick="toggleAudit('ab${sec}${i}','ac${sec}${i}')" style="${f.risk==='Critical'?'background:#fff5f5;':''}"><span class="audit-icon">${f.risk==='Critical'?'⚠️':'🔎'}</span><div class="audit-title"><h4>${f.title}</h4><p>${sec} · ${f.flag}</p></div><span class="tag ${f.risk==='Critical'?'open':'mgmt2'}">${f.risk} Risk</span><span class="chevron" id="ac${sec}${i}">▼</span></div><div class="audit-body" id="ab${sec}${i}" style="${f.risk==='Critical'?'background:#fff5f5;':''}"><span class="risk-badge ${f.risk==='Critical'?'critical':'high'}">${f.risk} Risk</span><div class="audit-grid"><div class="audit-field"><label>Finding</label><p>${f.detail}</p></div><div class="audit-field"><label>Risk / Impact</label><p>${f.impact}</p></div><div class="audit-field"><label>Proposed Action</label><p>${f.action}</p></div><div class="audit-field"><label>Owner</label><p>${f.owner}</p></div></div></div></div>`).join('');
   }
 
-  // ── Legal HTML ──
-  const lsHTML=(legal.legalSupport||[]).map(i=>`<li><strong style="color:#1e293b;">${i.title}:</strong> ${i.detail} <span style="color:#94a3b8;">(${i.status})</span></li>`).join('');
-  const cHTML=(legal.contracts||[]).map(i=>`<li><strong style="color:#1e293b;">${i.title}:</strong> ${i.detail} <span style="color:#94a3b8;">(${i.status})</span></li>`).join('');
-  const enHTML=(legal.enforcement||[]).map(i=>`<li><strong style="color:#1e293b;">${i.title}:</strong> ${i.detail}</li>`).join('');
-
-  // ── Findings & litigation JS (embedded in generated report) ──
   const findingsJS=`
 var findings=${JSON.stringify(findings)};
 var litigation=${JSON.stringify(litigation)};
 function renderFindings(filter){
   var list=document.getElementById('findings-list');
   var filtered=findings.filter(function(f){if(filter==='all')return true;if(filter==='Board')return f.flag==='Board';return f.status===filter||f.cat===filter;});
-  list.innerHTML=filtered.map(function(f){
-    return '<div class="finding-item"><div class="finding-header" onclick="tog(\\'fb'+f.id+'\\',\\'fc'+f.id+'\\')"><div class="finding-num">'+f.id+'</div><div class="finding-title-text">'+f.title+'</div><div class="finding-meta"><span class="tag '+(f.status==='Closed'?'closed':'open')+'">'+f.status+'</span><span class="tag '+(f.flag==='Board'?'board2':'mgmt2')+'">'+f.flag+'</span>'+(f.days?'<span style="font-size:10px;color:#94a3b8">'+f.days+'d</span>':'')+(f.update?'<span style="font-size:9px;background:#f0fdf4;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:600;margin-left:4px;">Updated</span>':'')+'<span class="chevron" id="fc'+f.id+'">▼</span></div></div><div class="finding-body" id="fb'+f.id+'"><div class="finding-row"><div class="finding-field"><label>Risk</label><p>'+f.risk+'</p></div><div class="finding-field"><label>Recommended Action</label><p>'+f.action+'</p></div></div><div class="finding-field" style="margin-top:10px;"><label>Owner</label><p>'+f.owner+'</p></div>'+(f.update?'<div style="margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:8px 10px;font-size:11px;color:#15803d;"><strong>This Week:</strong> '+f.update+'</div>':'')+'</div></div>';
-  }).join('');
+  list.innerHTML=filtered.map(function(f){return '<div class="finding-item"><div class="finding-header" onclick="toggleFinding(\\'fb'+f.id+'\\',\\'fc'+f.id+'\\')"><div class="finding-num">'+f.id+'</div><div class="finding-title-text">'+f.title+'</div><div class="finding-meta"><span class="tag '+(f.status==='Closed'?'closed':'open')+'">'+f.status+'</span><span class="tag '+(f.flag==='Board'?'board2':'mgmt2')+'">'+f.flag+'</span>'+(f.days?'<span style="font-size:10px;color:#94a3b8">'+f.days+'d</span>':'')+(f.update?'<span style="font-size:9px;background:#f0fdf4;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:600;border:1px solid #bbf7d0;">Updated</span>':'')+'<span class="chevron" id="fc'+f.id+'">▼</span></div></div><div class="finding-body" id="fb'+f.id+'"><div class="finding-row"><div class="finding-field"><label>Risk</label><p>'+f.risk+'</p></div><div class="finding-field"><label>Recommended Action</label><p>'+f.action+'</p></div></div><div class="finding-field" style="margin-top:10px;"><label>Owner</label><p>'+f.owner+'</p></div>'+(f.update?'<div style="margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:8px 10px;font-size:11px;color:#15803d;"><strong>This Week:</strong> '+f.update+'</div>':'')+'</div></div>';}).join('');
 }
 function filterFindings(filter,btn){document.querySelectorAll('.finding-filters .filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderFindings(filter);}
 function renderLit(filter){
   var list=document.getElementById('lit-list');
   var filtered=litigation.filter(function(l){return filter==='all'||l.type===filter;});
-  list.innerHTML=filtered.map(function(l,i){
-    return '<div class="lit-item"><div class="lit-header" onclick="tog(\\'lb'+filter+i+'\\',\\'lch'+filter+i+'\\')"><div class="lit-dot '+l.type+'"></div><div class="lit-title-wrap"><h4>'+l.case+'</h4><p>Filed '+l.year+' · '+(l.type==='deduction'?'Over-deduction claim':l.type==='origination'?'Unauthorised loan origination':'Other claim')+'</p></div><span style="color:#64748b;font-size:11px;font-weight:700;margin-right:8px;flex-shrink:0;">'+l.liability+'</span><span class="chevron" id="lch'+filter+i+'">▼</span></div><div class="lit-body" id="lb'+filter+i+'"><div class="lit-grid"><div class="lit-field"><label>Claim</label><p>'+l.claim+'</p></div><div class="lit-field"><label>Liability</label><p>'+l.liability+'</p></div><div class="lit-field"><label>Current Status</label><p>'+l.status+'</p></div></div></div></div>';
-  }).join('');
+  list.innerHTML=filtered.map(function(l,i){return '<div class="lit-item"><div class="lit-header" onclick="toggleLitItem(\\'lb'+filter+i+'\\',\\'lch'+filter+i+'\\')"><div class="lit-dot '+l.type+'"></div><div class="lit-title-wrap"><h4>'+l.case+'</h4><p>Filed '+l.year+' · '+(l.type==='deduction'?'Over-deduction claim':l.type==='origination'?'Unauthorised loan origination':'Other claim')+'</p></div><span style="color:#64748b;font-size:11px;font-weight:700;margin-right:8px;flex-shrink:0;">'+l.liability+'</span><span class="chevron" id="lch'+filter+i+'">▼</span></div><div class="lit-body" id="lb'+filter+i+'"><div class="lit-grid"><div class="lit-field"><label>Claim</label><p>'+l.claim+'</p></div><div class="lit-field"><label>Liability</label><p>'+l.liability+'</p></div><div class="lit-field"><label>Current Status</label><p>'+l.status+'</p></div></div></div></div>';}).join('');
 }
 function filterLit(filter,btn){document.querySelectorAll('.finding-filters .filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderLit(filter);}
+function toggleFinding(b,c){var bd=document.getElementById(b),cv=document.getElementById(c),o=bd.classList.contains('open');bd.classList.toggle('open',!o);cv.classList.toggle('open',!o);}
+function toggleLitItem(b,c){var bd=document.getElementById(b),cv=document.getElementById(c);if(!bd)return;var o=bd.classList.contains('open');bd.classList.toggle('open',!o);cv.classList.toggle('open',!o);}
 `;
 
-  // ── Full CSS (exact copy from your August 11 report) ──
-  const fullCSS=`*{margin:0;padding:0;box-sizing:border-box;}
+  const lsHTML=(legal.legalSupport||[]).map(i=>`<li><strong style="color:#1e293b;">${i.title}:</strong> ${i.detail} <span style="color:#94a3b8;">(${i.status})</span></li>`).join('');
+  const cHTML=(legal.contracts||[]).map(i=>`<li><strong style="color:#1e293b;">${i.title}:</strong> ${i.detail} <span style="color:#94a3b8;">(${i.status})</span></li>`).join('');
+  const enHTML=(legal.enforcement||[]).map(i=>`<li><strong style="color:#1e293b;">${i.title}:</strong> ${i.detail}</li>`).join('');
+
+  const firstSec=sel.exec?'exec':sel.themes?'themes':sel.robot?'robot':sel.internal?'internal':sel.systems?'systems':sel.legal?'legalcomp':sel.findings?'findings':'litigation';
+
+  const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CDL Audit & Compliance Management Report — ${date}</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-height:100vh;display:flex;}
 #sidebar{width:230px;min-height:100vh;background:linear-gradient(180deg,#1e3a5f 0%,#0f2442 100%);padding:24px 0;position:fixed;top:0;left:0;z-index:100;overflow-y:auto;}
 #sidebar .logo{padding:0 20px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
@@ -612,7 +795,6 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
 .page-title{font-size:22px;font-weight:800;color:#fff;}
 .page-sub{font-size:12px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.5;}
 .page-date{font-size:11px;color:#93c5fd;font-weight:600;margin-top:6px;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(30,58,95,0.08);}
 .card.blue{background:linear-gradient(135deg,#1e3a5f,#2563eb);border:none;color:#fff;}
@@ -753,16 +935,14 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
 .robot-finding-title{font-size:12px;font-weight:700;color:#c0392b;margin-bottom:3px;}
 .robot-finding-meta{font-size:10px;color:#94a3b8;margin-bottom:6px;font-weight:600;}
 .robot-finding-body{font-size:11px;color:#475569;line-height:1.6;}
-.robot-action-body{font-size:11px;color:#475569;line-height:1.6;}`;
-
-  const html=`<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>CDL Audit & Compliance Management Report — ${date}</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>
-<style>${fullCSS}</style>
+.robot-action-body{font-size:11px;color:#475569;line-height:1.6;}
+.insights-block{background:linear-gradient(135deg,#1e3a5f,#1e40af);border-radius:12px;padding:20px;margin-bottom:20px;}
+.insights-block h3{color:#93c5fd;font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.insight-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
+.insight-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.insight-text{font-size:12px;color:rgba(255,255,255,0.85);line-height:1.6;}
+.insight-text strong{color:#fff;}
+</style>
 </head>
 <body>
 <div id="sidebar">
@@ -771,120 +951,77 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
     <h2>Audit & Compliance<br/>Management Report</h2>
     <div class="date">📅 ${date}</div>
   </div>
-  <nav>
-    <div class="nav-group">Overview</div>
-    <a href="#" class="active" onclick="show('exec',this)"><span class="icon">📊</span> Executive Summary</a>
-    <a href="#" onclick="show('themes',this)"><span class="icon">🎯</span> Thematic Analysis</a>
-    <div class="nav-group">Sections</div>
-    <a href="#" onclick="show('internal',this)"><span class="icon">🔎</span> Internal Audit</a>
-    <a href="#" onclick="show('systems',this)"><span class="icon">🛡️</span> Systems & Security</a>
-    <a href="#" onclick="show('legalcomp',this)"><span class="icon">📋</span> Legal & Compliance</a>
-    <div class="nav-group">Tracking</div>
-    <a href="#" onclick="show('findings',this)"><span class="icon">📁</span> Prior Findings</a>
-    <a href="#" onclick="show('litigation',this)"><span class="icon">⚖️</span> Litigation Portfolio</a>
-  </nav>
+  <nav>${navLinks.join('')}</nav>
 </div>
 <div id="main">
 
-<div id="exec" class="section active">
+${sel.exec?`
+<div id="exec" class="section${firstSec==='exec'?' active':''}">
   <div class="page-header">
     <div class="page-title">Executive Summary</div>
     <div class="page-sub">Key highlights, findings and action items for the week under review</div>
     <div class="page-date">📅 Week ending ${date} · Management Meeting</div>
   </div>
+  ${insightsHTML}
   <div class="grid-3">
     <div class="card blue"><div class="stat-val" style="color:#fff">${ytdTotal}</div><div class="stat-label white">Total YTD Action Items</div><div class="stat-sub white">${ytdOpen} Open · ${ytdClosed} Closed</div></div>
     <div class="card lightblue"><div class="stat-val" style="color:#1e3a5f">${exec.length}</div><div class="stat-label">Management-level findings this week</div><div class="stat-sub">0 Board-level findings this week</div></div>
     <div class="card"><div class="stat-val" style="color:#15803d">${exec.length}</div><div class="stat-label">Total findings / updates this period</div><div class="stat-sub">All flagged for Management reporting</div></div>
   </div>
-  <div class="blue-banner"><span class="icon">📋</span><span>This Week's Audit & Security Findings — Click Each to Expand</span></div>
-  ${execHTML||'<p style="color:#94a3b8;font-size:12px;padding:8px;">No executive summary items submitted.</p>'}
+  <div class="blue-banner"><span class="icon">📋</span><span>This Week's Findings — Click Each to Expand</span></div>
+  ${execHTML||'<p style="color:#94a3b8;font-size:12px;">No items submitted.</p>'}
   ${robotHTML}
   <div class="chart-box" style="margin-top:20px;">
     <h3>YTD Action Items — Open vs Closed</h3>
     <p>${ytdTotal} total action items tracked year to date</p>
     <div class="donut-row">
-      <div class="donut-wrap">
-        <canvas id="donutChart"></canvas>
-        <div class="donut-center"><div class="big">${ytdTotal}</div><div class="small">Total</div></div>
-      </div>
+      <div class="donut-wrap"><canvas id="donutChart"></canvas><div class="donut-center"><div class="big">${ytdTotal}</div><div class="small">Total</div></div></div>
       <div class="donut-legend">
-        <div class="donut-leg-item">
-          <div class="donut-leg-dot" style="background:#c0392b;"></div>
-          <div><div class="donut-leg-label">Open</div><div class="donut-leg-sub">Requires resolution</div></div>
-          <div class="donut-leg-pct" style="color:#c0392b;">${ytdOpen} <span style="font-size:10px;color:#94a3b8;">(${openPct}%)</span></div>
-        </div>
-        <div class="donut-leg-item">
-          <div class="donut-leg-dot" style="background:#059669;"></div>
-          <div><div class="donut-leg-label">Closed</div><div class="donut-leg-sub">Remediated & verified</div></div>
-          <div class="donut-leg-pct" style="color:#059669;">${ytdClosed} <span style="font-size:10px;color:#94a3b8;">(${closedPct}%)</span></div>
-        </div>
+        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#c0392b;"></div><div><div class="donut-leg-label">Open</div><div class="donut-leg-sub">Requires resolution</div></div><div class="donut-leg-pct" style="color:#c0392b;">${ytdOpen} <span style="font-size:10px;color:#94a3b8;">(${Math.round(ytdOpen/ytdTotal*100)}%)</span></div></div>
+        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#059669;"></div><div><div class="donut-leg-label">Closed</div><div class="donut-leg-sub">Remediated & verified</div></div><div class="donut-leg-pct" style="color:#059669;">${ytdClosed} <span style="font-size:10px;color:#94a3b8;">(${Math.round(ytdClosed/ytdTotal*100)}%)</span></div></div>
       </div>
     </div>
   </div>
-</div>
+</div>`:''}
 
-<div id="themes" class="section">
-  <div class="page-header">
-    <div class="page-title">Thematic Analysis</div>
-    <div class="page-sub">Six recurring themes — the same institutional gaps surfacing repeatedly across different systems</div>
-    <div class="page-date">📅 ${date}</div>
-  </div>
+${sel.themes?`
+<div id="themes" class="section${firstSec==='themes'?' active':''}">
+  <div class="page-header"><div class="page-title">Thematic Analysis</div><div class="page-sub">Six recurring themes account for the majority of our findings</div><div class="page-date">📅 ${date}</div></div>
   <div class="scope-note"><p>📌 This analysis covers management-level findings. Board-level findings are reported separately.</p></div>
-  <div class="chart-box">
-    <h3>Six Recurring Themes — Finding Count</h3>
-    <p>Credential & Secrets Management is the single largest concentration — 17 findings spanning every major system we operate</p>
-    <canvas id="themeChart" height="160"></canvas>
-  </div>
-  <div class="grid-2" style="margin-bottom:16px;">
-    <div class="card lightblue">
-      <div class="section-label">All Six Themes</div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;align-items:center;gap:10px;"><div style="width:12px;height:12px;border-radius:3px;background:#c0392b;flex-shrink:0;"></div><span style="font-size:12px;color:#1e293b;font-weight:600;">Credential & Secrets Management <span style="color:#94a3b8">(17)</span></span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div style="width:12px;height:12px;border-radius:3px;background:#1e3a5f;flex-shrink:0;"></div><span style="font-size:12px;color:#1e293b;font-weight:600;">Access Control & Privilege Governance <span style="color:#94a3b8">(11)</span></span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div style="width:12px;height:12px;border-radius:3px;background:#7c3aed;flex-shrink:0;"></div><span style="font-size:12px;color:#1e293b;font-weight:600;">Monitoring, Logging & Alerting <span style="color:#94a3b8">(10)</span></span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div style="width:12px;height:12px;border-radius:3px;background:#d97706;flex-shrink:0;"></div><span style="font-size:12px;color:#1e293b;font-weight:600;">Customer Operations & Loan Lifecycle <span style="color:#94a3b8">(9)</span></span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div style="width:12px;height:12px;border-radius:3px;background:#059669;flex-shrink:0;"></div><span style="font-size:12px;color:#1e293b;font-weight:600;">Data Integrity & Reconciliation <span style="color:#94a3b8">(6)</span></span></div>
-        <div style="display:flex;align-items:center;gap:10px;"><div style="width:12px;height:12px;border-radius:3px;background:#64748b;flex-shrink:0;"></div><span style="font-size:12px;color:#1e293b;font-weight:600;">Third-Party & Vendor Risk <span style="color:#94a3b8">(3)</span></span></div>
-      </div>
-    </div>
-    <div class="chart-box" style="margin-bottom:0;"><h3>Findings by Division</h3><p>Technology owns the largest share by far</p><canvas id="divisionChart" height="160"></canvas></div>
-  </div>
+  <div class="chart-box"><h3>Six Recurring Themes — Finding Count</h3><p>Credential & Secrets Management is the single largest concentration</p><canvas id="themeChart" height="160"></canvas></div>
   <div class="cred-cluster">
     <div class="cred-label">On the Credential Cluster — Why This One Matters Most</div>
-    <div class="cred-insight"><span class="cred-arrow">→</span><span class="cred-text">This week added new credential findings. The cluster continues to grow across every major system we operate.</span></div>
+    <div class="cred-insight"><span class="cred-arrow">→</span><span class="cred-text">New credential findings continue to surface. The cluster is still growing across every major system we operate.</span></div>
     <div class="cred-insight"><span class="cred-arrow">→</span><span class="cred-text">Most prior credential findings were individually closed. The pattern keeps recurring. Point-fixes without a secrets management programme do not hold.</span></div>
-    <div class="cred-insight"><span class="cred-arrow">→</span><span class="cred-text">At 17 findings, this cluster represents approximately 29% of all Technology-owned findings — the single largest concentration of any theme across the full portfolio.</span></div>
+    <div class="cred-insight"><span class="cred-arrow">→</span><span class="cred-text">At 17 findings, this cluster represents approximately 29% of all Technology-owned findings — the single largest concentration of any theme.</span></div>
   </div>
-  <div class="closing"><p>The majority of our findings fall under six themes. We do not have dozens of separate problems. We have six, being experienced repeatedly — and the credential cluster is still open, still growing.</p></div>
-</div>
+  <div class="closing"><p>The majority of our findings fall under six themes. We do not have dozens of separate problems. We have six, being experienced repeatedly.</p></div>
+</div>`:''}
 
-<div id="internal" class="section">
+${sel.internal?`
+<div id="internal" class="section${firstSec==='internal'?' active':''}">
   <div class="page-header"><div class="page-title">Internal Audit & Investigation Report</div><div class="page-sub">Findings from loan portfolio review, fraud monitoring and control gap assessments</div><div class="page-date">📅 Week ending ${date}</div></div>
   ${auditSection(internal,'Internal Audit')}
-</div>
+</div>`:''}
 
-<div id="systems" class="section">
+${sel.systems?`
+<div id="systems" class="section${firstSec==='systems'?' active':''}">
   <div class="page-header"><div class="page-title">Systems Audit & Security Compliance Report</div><div class="page-sub">System controls, data protection and security updates for the period</div><div class="page-date">📅 Week ending ${date}</div></div>
   ${auditSection(systems,'Systems & Security')}
-</div>
+</div>`:''}
 
-<div id="legalcomp" class="section">
+${sel.legal?`
+<div id="legalcomp" class="section${firstSec==='legalcomp'?' active':''}">
   <div class="page-header"><div class="page-title">Legal, Compliance & Governance</div><div class="page-sub">Regulatory compliance status, legal support, litigation updates and active contracts</div><div class="page-date">📅 Week ending ${date}</div></div>
-  <div class="legal-item">
-    <div class="legal-header" onclick="tog('lc1','lch1')"><span class="legal-icon">📜</span><div class="legal-title">Regulatory Compliance</div><span class="tag closed" style="flex-shrink:0;">No Breach</span><span class="chevron" id="lch1">▼</span></div>
-    <div class="legal-body" id="lc1">
-      <p><strong style="color:#1e293b;">Material Breaches:</strong> ${legal.regulatory?.breaches||'Nil within the week under review.'}</p>
-      <p style="margin-top:8px;"><strong style="color:#1e293b;">Policy Updates:</strong> ${legal.regulatory?.policy||'No updates this week.'}</p>
-    </div>
-  </div>
-  ${lsHTML?`<div class="legal-item"><div class="legal-header" onclick="tog('lc2','lch2')"><span class="legal-icon">🏛️</span><div class="legal-title">Legal Support — Active Matters</div><span class="chevron" id="lch2">▼</span></div><div class="legal-body" id="lc2"><ul>${lsHTML}</ul></div></div>`:''}
-  ${cHTML?`<div class="legal-item"><div class="legal-header" onclick="tog('lc3','lch3')"><span class="legal-icon">📝</span><div class="legal-title">Contracts — Active & Pending</div><span class="chevron" id="lch3">▼</span></div><div class="legal-body" id="lc3"><ul>${cHTML}</ul></div></div>`:''}
-  ${enHTML?`<div class="legal-item"><div class="legal-header" onclick="tog('lc4','lch4')"><span class="legal-icon">⚖️</span><div class="legal-title">Customer Issues, Litigations & Law Enforcement</div><span class="tag open" style="flex-shrink:0;">Active</span><span class="chevron" id="lch4">▼</span></div><div class="legal-body" id="lc4"><ul>${enHTML}</ul></div></div>`:''}
-</div>
+  <div class="legal-item"><div class="legal-header" onclick="toggleLegal('lc1','lch1')"><span class="legal-icon">📜</span><div class="legal-title">Regulatory Compliance</div><span class="tag closed" style="flex-shrink:0;">No Breach</span><span class="chevron" id="lch1">▼</span></div><div class="legal-body" id="lc1"><p><strong>Material Breaches:</strong> ${legal.regulatory?.breaches||'Nil within the week under review.'}</p><p style="margin-top:8px;"><strong>Policy Updates:</strong> ${legal.regulatory?.policy||'Not provided'}</p></div></div>
+  ${lsHTML?`<div class="legal-item"><div class="legal-header" onclick="toggleLegal('lc2','lch2')"><span class="legal-icon">🏛️</span><div class="legal-title">Legal Support — Active Matters</div><span class="chevron" id="lch2">▼</span></div><div class="legal-body" id="lc2"><ul>${lsHTML}</ul></div></div>`:''}
+  ${cHTML?`<div class="legal-item"><div class="legal-header" onclick="toggleLegal('lc3','lch3')"><span class="legal-icon">📝</span><div class="legal-title">Contracts — Active & Pending</div><span class="chevron" id="lch3">▼</span></div><div class="legal-body" id="lc3"><ul>${cHTML}</ul></div></div>`:''}
+  ${enHTML?`<div class="legal-item"><div class="legal-header" onclick="toggleLegal('lc4','lch4')"><span class="legal-icon">⚖️</span><div class="legal-title">Customer Issues, Litigations & Law Enforcement</div><span class="tag open" style="flex-shrink:0;">Active</span><span class="chevron" id="lch4">▼</span></div><div class="legal-body" id="lc4"><ul>${enHTML}</ul></div></div>`:''}
+</div>`:''}
 
-<div id="findings" class="section">
-  <div class="page-header"><div class="page-title">Status of Prior Findings</div><div class="page-sub">Click any finding to expand full detail, risk, action and owner. Filter by status, division or reporting level.</div><div class="page-date">📅 ${date} · ${ytdTotal} total · ${ytdOpen} open · ${ytdClosed} closed</div></div>
+${sel.findings?`
+<div id="findings" class="section${firstSec==='findings'?' active':''}">
+  <div class="page-header"><div class="page-title">Status of Prior Findings</div><div class="page-sub">Click any finding to expand. Filter by status, division or reporting level.</div><div class="page-date">📅 ${date} · ${ytdTotal} total · ${ytdOpen} open · ${ytdClosed} closed</div></div>
   <div class="chart-box"><h3>Aging Profile — Open Items by Days Outstanding</h3><p>Older buckets signal systemic remediation delays requiring escalation</p><canvas id="agingChart" height="120"></canvas></div>
   <div class="finding-filters">
     <button class="filter-btn active" onclick="filterFindings('all',this)">All</button>
@@ -896,23 +1033,15 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
     <button class="filter-btn" onclick="filterFindings('Board',this)">Board-Level</button>
   </div>
   <div id="findings-list"></div>
-</div>
+</div>`:''}
 
-<div id="litigation" class="section">
+${sel.litigation?`
+<div id="litigation" class="section${firstSec==='litigation'?' active':''}">
   <div class="page-header"><div class="page-title">Our Litigation Portfolio Is an Operations Problem</div><div class="page-sub">7 of 11 active cases trace directly to unresolved operational control failures — and the pipeline is accelerating</div><div class="page-date">📅 ${date}</div></div>
   <div class="grid-3">
     <div class="card blue"><div class="stat-val" style="color:#fff">7 of 11</div><div class="stat-label white">Active cases rooted in operational failures already documented in this report</div></div>
-    <div class="card lightblue"><div class="stat-val" style="color:#1e3a5f">₦87m+</div><div class="stat-label">Total quantified portfolio exposure</div><div class="stat-sub">3 cases (Ekuma, Tanyi, Agunbiade) carry no liability figure yet. ₦87m is the floor, not the ceiling.</div></div>
-    <div class="card amber"><div class="stat-val" style="color:#d97706">4 in 2026</div><div class="stat-label">New cases filed this year — Jelani, Ekuma, Tanyi & Egba Henry. The pipeline is not stabilising.</div></div>
-  </div>
-  <div class="blue-banner"><span class="icon">⚠️</span><span>Five Operational Control Failures Driving These Cases</span></div>
-  <div class="failure-grid">
-    <div class="failure-item"><div class="failure-num">1</div><div><div class="failure-title">No automated settlement detection</div><div class="failure-detail">Loans stay active after full repayment. Deductions continue until the customer escalates.</div></div></div>
-    <div class="failure-item"><div class="failure-num">2</div><div><div class="failure-title">Closure is manual and complaint-triggered</div><div class="failure-detail">Loan closure only actioned on EDR following customer or sales agent escalation.</div></div></div>
-    <div class="failure-item"><div class="failure-num">3</div><div><div class="failure-title">Refund controls are defeated</div><div class="failure-detail">Same individual prepares and uploads the refund schedule, bypassing maker-checker entirely.</div></div></div>
-    <div class="failure-item"><div class="failure-num">4</div><div><div class="failure-title">No self-service loan closure</div><div class="failure-detail">Customers cannot liquidate digitally, extending the complaint cycle.</div></div></div>
-    <div class="failure-item"><div class="failure-num" style="background:#c0392b">5</div><div><div class="failure-title">No complaint reference or resolution SLA</div><div class="failure-detail">Complaints carry no unique identifier and no resolution timeline. Now 105+ days open.</div></div></div>
-    <div style="background:transparent;border:none;"></div>
+    <div class="card lightblue"><div class="stat-val" style="color:#1e3a5f">₦87m+</div><div class="stat-label">Total quantified portfolio exposure</div><div class="stat-sub">3 cases carry no liability figure yet. ₦87m is the floor, not the ceiling.</div></div>
+    <div class="card amber"><div class="stat-val" style="color:#d97706">4 in 2026</div><div class="stat-label">New cases filed this year. Pipeline not stabilising.</div></div>
   </div>
   <div class="blue-banner"><span class="icon">⚖️</span><span>Active Cases — Click to Expand · Filter by Type</span></div>
   <div class="finding-filters">
@@ -927,21 +1056,21 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
     <div class="insight-cell"><label>On exposure</label><p>Total quantified exposure stands at ₦87m+. Three cases carry no liability figure yet. The ₦87m is the floor, not the ceiling.</p></div>
     <div class="insight-cell"><label>On accountability</label><p>Legal is not the root owner of any of these failures. They are managing consequences of gaps that Engineering and Operations already have open findings on.</p></div>
   </div>
-</div>
+</div>`:''}
 
 </div>
 <script>
 function show(id,el){document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});document.querySelectorAll('#sidebar nav a').forEach(function(a){a.classList.remove('active');});document.getElementById(id).classList.add('active');el.classList.add('active');}
-function tog(b,c){var bd=document.getElementById(b),cv=document.getElementById(c),o=bd.classList.contains('open');bd.classList.toggle('open',!o);cv.classList.toggle('open',!o);}
+function toggleExec(b,c){var bd=document.getElementById(b),cv=document.getElementById(c),o=bd.classList.contains('open');bd.classList.toggle('open',!o);cv.classList.toggle('open',!o);}
+function toggleAudit(b,c){var bd=document.getElementById(b),cv=document.getElementById(c),o=bd.classList.contains('open');bd.classList.toggle('open',!o);cv.classList.toggle('open',!o);}
+function toggleLegal(b,c){var bd=document.getElementById(b),cv=document.getElementById(c),o=bd.classList.contains('open');bd.classList.toggle('open',!o);cv.classList.toggle('open',!o);}
 ${findingsJS}
 window.addEventListener('load',function(){
   var co={color:'#64748b'};
-  new Chart(document.getElementById('donutChart'),{type:'doughnut',data:{labels:['Open (${ytdOpen})','Closed (${ytdClosed})'],datasets:[{data:[${ytdOpen},${ytdClosed}],backgroundColor:['#c0392b','#059669'],borderWidth:0,hoverOffset:4}]},options:{plugins:{legend:{display:false}},cutout:'72%',animation:{animateRotate:true}}});
-  new Chart(document.getElementById('themeChart'),{type:'bar',data:{labels:['Credential & Secrets (17)','Access Control (11)','Monitoring & Logging (10)','Loan Lifecycle & Ops (9)','Data Integrity (6)','Third-Party Risk (3)'],datasets:[{data:[17,11,10,9,6,3],backgroundColor:['#c0392b','#1e3a5f','#7c3aed','#d97706','#059669','#64748b'],borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{color:'#f0f4f8'}},y:{ticks:{color:'#475569',font:{size:10}},grid:{display:false}}}}});
-  new Chart(document.getElementById('divisionChart'),{type:'bar',data:{labels:['Technology','Operations','Finance','Legal','People','Brand'],datasets:[{data:[59,21,14,8,4,2],backgroundColor:['#1e3a5f','#2563eb','#059669','#d97706','#7c3aed','#64748b'],borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{color:'#f0f4f8'}},y:{ticks:{color:'#475569',font:{size:10}},grid:{display:false}}}}});
-  new Chart(document.getElementById('agingChart'),{type:'bar',data:{labels:['0–30 days','31–60 days','61–90 days','91–120 days','120+ days'],datasets:[{data:[8,19,6,4,7],backgroundColor:['#059669','#2563eb','#d97706','#c0392b','#7f1d1d'],borderRadius:4}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{display:false}},y:{ticks:co,grid:{color:'#f0f4f8'}}}}});
-  renderFindings('all');
-  renderLit('all');
+  ${sel.exec?`new Chart(document.getElementById('donutChart'),{type:'doughnut',data:{labels:['Open (${ytdOpen})','Closed (${ytdClosed})'],datasets:[{data:[${ytdOpen},${ytdClosed}],backgroundColor:['#c0392b','#059669'],borderWidth:0,hoverOffset:4}]},options:{plugins:{legend:{display:false}},cutout:'72%',animation:{animateRotate:true}}});`:''}
+  ${sel.themes?`new Chart(document.getElementById('themeChart'),{type:'bar',data:{labels:['Credential & Secrets (17)','Access Control (11)','Monitoring & Logging (10)','Loan Lifecycle & Ops (9)','Data Integrity (6)','Third-Party Risk (3)'],datasets:[{data:[17,11,10,9,6,3],backgroundColor:['#c0392b','#1e3a5f','#7c3aed','#d97706','#059669','#64748b'],borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{color:'#f0f4f8'}},y:{ticks:{color:'#475569',font:{size:10}},grid:{display:false}}}}});`:''}
+  ${sel.findings?`new Chart(document.getElementById('agingChart'),{type:'bar',data:{labels:['0–30 days','31–60 days','61–90 days','91–120 days','120+ days'],datasets:[{data:[8,19,6,4,7],backgroundColor:['#059669','#2563eb','#d97706','#c0392b','#7f1d1d'],borderRadius:4}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{display:false}},y:{ticks:co,grid:{color:'#f0f4f8'}}}}});renderFindings('all');`:''}
+  ${sel.litigation?`renderLit('all');`:''}
 });
 <\/script>
 </body>
@@ -950,13 +1079,52 @@ window.addEventListener('load',function(){
   const blob=new Blob([html],{type:'text/html'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='CDL_Audit_Compliance_Report_'+date.replace(/ /g,'_')+'.html';
+  a.download=`CDL_Audit_Compliance_Report_${date.replace(/ /g,'_')}.html`;
   a.click();
 
   try{
     await fetch(API+'/api/archive',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date,html})});
-    alert('✅ Report generated and saved to Archive!');
-  }catch(e){alert('Report downloaded. Archive save failed — check connection.');}
+    alert('✅ Report downloaded and saved to Archive!');
+  }catch(e){alert('Report downloaded. Archive save failed.');}
+}
+
+async function loadLiveView(){
+  try{
+    const res=await fetch(API+'/api/data');
+    dbData=await res.json();
+    const secs=[
+      {k:'exec',l:'📊 Executive Summary',items:(dbData.exec||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.summary||''} <em style="color:#94a3b8;">(${f.flag})</em>${f.attachment?' 📎':''}</div>`)},
+      {k:'robot',l:'🤖 Robot Assurance Review',items:dbData.robot?.reviewPeriod?[`<div class="li"><strong>Period:</strong> ${dbData.robot.reviewPeriod} · <strong>Loans:</strong> ${dbData.robot.totalLoans} · <strong>Sample:</strong> ${dbData.robot.sampleReviewed}</div>`,...(dbData.robot.findings||[]).map(f=>`<div class="li">${f.title}</div>`)]:[]},
+      {k:'internal',l:'🔎 Internal Audit',items:(dbData.internal||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.risk} Risk</div>`)},
+      {k:'systems',l:'🛡️ Systems & Security',items:(dbData.systems||[]).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.risk} Risk</div>`)},
+      {k:'legal',l:'📋 Legal & Compliance',items:dbData.legal?.regulatory?[`<div class="li"><strong>Breaches:</strong> ${dbData.legal.regulatory.breaches||'None'}</div>`,...(dbData.legal.legalSupport||[]).map(i=>`<div class="li">${i.title}</div>`),...(dbData.legal.contracts||[]).map(i=>`<div class="li">${i.title} (${i.status})</div>`)]:[]},
+      {k:'findings',l:'📁 Prior Findings',items:(dbData.findings||[]).slice(0,5).map(f=>`<div class="li"><strong>${f.title}</strong> — ${f.status}${f.update?' · '+f.update:''}</div>`).concat((dbData.findings||[]).length>5?[`<div class="li" style="color:#94a3b8;">...and ${(dbData.findings||[]).length-5} more</div>`]:[])},
+      {k:'litigation',l:'⚖️ Litigation',items:(dbData.litigation||[]).map(f=>`<div class="li"><strong>${f.case}</strong> · ${f.liability||'TBD'}</div>`)},
+    ];
+    document.getElementById('live-view-content').innerHTML=secs.map(s=>`
+      <div class="live-section">
+        <div class="lsh"><h3>${s.l}</h3><span class="lc">${s.items.length} item${s.items.length!==1?'s':''}</span></div>
+        ${s.items.length?s.items.join(''):'<div class="empty-state">Not yet submitted</div>'}
+      </div>`).join('');
+  }catch(e){document.getElementById('live-view-content').innerHTML='<div class="empty-state">Could not load data.</div>';}
+}
+
+async function loadGenerateStatus(){
+  const res=await fetch(API+'/api/data');
+  dbData=await res.json();
+  const secs=[
+    {k:'exec',l:'Executive Summary',ok:d=>d?.length>0},
+    {k:'robot',l:'Robot Assurance',ok:d=>!!d?.reviewPeriod},
+    {k:'internal',l:'Internal Audit',ok:d=>d?.length>0},
+    {k:'systems',l:'Systems & Security',ok:d=>d?.length>0},
+    {k:'legal',l:'Legal & Compliance',ok:d=>!!d?.regulatory},
+    {k:'findings',l:'Prior Findings',ok:d=>d?.length>0},
+    {k:'litigation',l:'Litigation',ok:d=>d?.length>0},
+  ];
+  document.getElementById('sections-status').innerHTML=secs.map(s=>{
+    const done=s.ok(dbData[s.k]);
+    return`<div style="background:${done?'#f0fdf4':'#f8fafc'};border:1px solid ${done?'#bbf7d0':'#e2e8f0'};border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:7px;"><span>${done?'✅':'⏳'}</span><span style="font-size:11px;font-weight:700;color:${done?'#15803d':'#64748b'};">${s.l}</span></div>`;
+  }).join('');
 }
 
 async function loadArchive(){
@@ -967,14 +1135,7 @@ async function loadArchive(){
     if(!archive.length){container.innerHTML='<div class="empty-state" style="padding:48px;">No reports archived yet. Generate a report and it will appear here automatically.</div>';return;}
     container.innerHTML=[...archive].reverse().map(r=>{
       const saved=new Date(r.savedAt).toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
-      return`<div class="archive-item">
-        <div class="archive-date"><h3>📄 Week of ${r.date}</h3><p>Saved: ${saved}</p></div>
-        <div class="archive-actions">
-          <button class="bsm bv" onclick="viewReport('${r.id}')">👁 View</button>
-          <button class="bsm bdl" onclick="downloadReport('${r.id}','${r.date}')">⬇ Download</button>
-          <button class="bsm bdel" onclick="deleteReport('${r.id}')">🗑 Delete</button>
-        </div>
-      </div>`;
+      return`<div class="archive-item"><div class="archive-date"><h3>📄 Week of ${r.date}</h3><p>Saved: ${saved}</p></div><div style="display:flex;gap:8px;flex-shrink:0;"><button class="bsm bv" onclick="viewReport('${r.id}')">👁 View</button><button class="bsm bdl" onclick="downloadReport('${r.id}','${r.date}')">⬇ Download</button><button class="bsm bdel" onclick="deleteReport('${r.id}')">🗑 Delete</button></div></div>`;
     }).join('');
   }catch(e){document.getElementById('archive-list').innerHTML='<div class="empty-state">Could not load archive.</div>';}
 }
@@ -992,7 +1153,7 @@ async function downloadReport(id,date){
   const blob=new Blob([r.html],{type:'text/html'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='CDL_Audit_Report_'+date.replace(/ /g,'_')+'.html';
+  a.download=`CDL_Audit_Report_${date.replace(/ /g,'_')}.html`;
   a.click();
 }
 
@@ -1003,20 +1164,14 @@ async function deleteReport(id){
 }
 
 async function resetForNewWeek(){
-  if(!confirm('This clears the weekly sections (Executive Summary, Internal Audit, Systems & Security, Robot Review, Legal & Compliance).\n\nPrior Findings and Litigation are KEPT and carry forward automatically.\n\nContinue?'))return;
+  if(!confirm('This clears the weekly sections (Executive Summary, Internal Audit, Systems & Security, Robot Review, Legal & Compliance).\n\nPrior Findings and Litigation carry forward automatically.\n\nContinue?'))return;
   await fetch(API+'/api/reset',{method:'POST'});
-  document.getElementById('exec-findings').innerHTML='';
-  document.getElementById('internal-findings').innerHTML='';
-  document.getElementById('systems-findings').innerHTML='';
-  document.getElementById('robot-findings-list').innerHTML='';
-  document.getElementById('legal-support-list').innerHTML='';
-  document.getElementById('contracts-list').innerHTML='';
-  document.getElementById('enforcement-list').innerHTML='';
+  ['exec-findings','internal-findings','systems-findings','robot-findings-list','prior-findings-list','litigation-list','legal-support-list','contracts-list','enforcement-list'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='';});
   ['robot-period','robot-total','robot-types','robot-sample','robot-value','robot-action','reg-breaches','reg-policy'].forEach(id=>sv(id,''));
   document.querySelectorAll('.done-badge').forEach(b=>b.remove());
-  Object.keys(counts).forEach(k=>{if(k!=='findings'&&k!=='litigation')counts[k]=0;});
+  Object.keys(counts).forEach(k=>counts[k]=0);
   Object.keys(lC).forEach(k=>lC[k]=0);
-  alert('✅ Reset complete! Prior Findings and Litigation have been kept. Your team can now fill in this week\'s new items.');
+  alert('✅ Reset complete! Your team can now fill in this week\'s report.');
 }
 
 setInterval(()=>{if(!document.getElementById('view-mode').classList.contains('hidden'))loadLiveView();},30000);
