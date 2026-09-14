@@ -235,6 +235,7 @@ textarea{resize:vertical;min-height:56px;line-height:1.6;}
       <div><label>Total YTD Findings</label><input type="number" id="ytd-total" value="58"/></div>
       <div><label>Open Findings</label><input type="number" id="ytd-open" value="31"/></div>
       <div><label>Closed Findings</label><input type="number" id="ytd-closed" value="27"/></div>
+      <div><label>Work In Progress</label><input type="number" id="ytd-wip" value="0"/></div>
     </div>
   </div>
 
@@ -349,7 +350,7 @@ function addExecFinding(data={}){
   counts.exec++;const id=counts.exec;
   const div=document.createElement('div');div.className='finding-block';div.id='eb-'+id;
   div.innerHTML=`<button class="remove-btn" onclick="removeAndSave('eb-${id}','exec')">✕ Remove</button>
-    <label>Finding Title</label><input type="text" id="et-${id}" placeholder="e.g. Multiple Disbursement Anomaly"/>
+    <label>Type</label><div style="display:flex;gap:20px;margin-bottom:8px;"><label style="text-transform:none;letter-spacing:0;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;color:#b91c1c;"><input type="radio" name="etype-${id}" value="Finding" checked style="width:14px;accent-color:#b91c1c;"/> 🔴 Finding</label><label style="text-transform:none;letter-spacing:0;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;color:#15803d;"><input type="radio" name="etype-${id}" value="Achievement" style="width:14px;accent-color:#15803d;"/> 🟢 Achievement</label></div><label>Title</label><input type="text" id="et-${id}" placeholder="e.g. Multiple Disbursement Anomaly"/>
     <label>Summary</label><textarea id="es-${id}" placeholder="2–3 sentence summary..."></textarea>
     <div class="row" style="margin-top:8px;">
       <div><label>Flag</label><select id="ef-${id}"><option>Management</option><option>Board</option></select></div>
@@ -357,7 +358,7 @@ function addExecFinding(data={}){
     </div>
     <label>Owner / Stakeholder</label><input type="text" id="eo-${id}" placeholder="e.g. Head, Engineering"/>
     <div class="attach-area">
-      <label style="margin-top:0;">📎 Optional Attachment (image, PDF or PPT — max 5MB)</label>
+      <label style="margin-top:0;"><span style="color:#dc2626;font-size:15px;">📎</span> Optional Attachment (image, PDF or PPT — max 5MB)</label>
       <input type="file" id="ea-${id}" accept=".pdf,.ppt,.pptx,.png,.jpg,.jpeg,.gif" onchange="handleAttachment(${id},this)"/>
       <div class="attach-preview" id="ep-${id}">${data.attachmentName?'📎 '+data.attachmentName:''}</div>
     </div>`;
@@ -433,7 +434,7 @@ function addPriorFinding(data={}){
     <label>Finding Title</label><input type="text" id="pf-t-${id}" placeholder="Finding title"/>
     <div class="row3">
       <div><label>Division</label><select id="pf-c-${id}"><option>Technology</option><option>Operations</option><option>Finance</option><option>Legal</option></select></div>
-      <div><label>Status</label><select id="pf-s-${id}"><option>Open</option><option>Closed</option></select></div>
+      <div><label>Status</label><select id="pf-s-${id}"><option>Open</option><option>Closed</option><option>Work In Progress</option></select></div>
       <div><label>Flag</label><select id="pf-f-${id}"><option>Management</option><option>Board</option></select></div>
     </div>
     <div class="row">
@@ -472,7 +473,7 @@ function collectData(sec){
     return[...document.querySelectorAll('[id^="eb-"]')].map(b=>{
       const id=b.id.replace('eb-','');
       const att=attachments[id]||{};
-      return{title:gv('et-'+id),summary:gv('es-'+id),flag:gv('ef-'+id),status:gv('ess-'+id),owner:gv('eo-'+id),attachmentName:att.name||'',attachmentData:att.data||'',attachmentType:att.type||''};
+      const _t=document.querySelector('[name="etype-'+id+'"]:checked');return{title:gv('et-'+id),type:_t?_t.value:'Finding',summary:gv('es-'+id),flag:gv('ef-'+id),status:gv('ess-'+id),owner:gv('eo-'+id),attachmentName:att.name||'',attachmentData:att.data||'',attachmentType:att.type||''};
     });
   }
   if(sec==='robot'){
@@ -494,12 +495,28 @@ async function saveSection(sec){
   const data=collectData(sec);
   try{
     await fetch(API+'/api/save/'+sec,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(sec==='internal'||sec==='systems')syncAuditToFindings(sec,Array.isArray(data)?data:[]);
+    if(sec==='legal'&&data&&data.enforcement)syncLegalToLitigation(data.enforcement);
     const st=document.getElementById('ss-'+sec);
     if(st){st.style.display='inline';setTimeout(()=>st.style.display='none',2500);}
     const cnt=sec==='robot'?(data.reviewPeriod?1:0):(Array.isArray(data)?data.length:1);
     const card=document.getElementById('card-'+sec);
     if(card){let b=card.querySelector('.done-badge');if(cnt>0&&!b){b=document.createElement('div');b.className='done-badge';b.textContent='✓';card.appendChild(b);}else if(cnt===0&&b)b.remove();}
   }catch(e){alert('Save failed. Check your connection.');}
+}
+
+
+async function syncAuditToFindings(sec,items){
+  try{const r=await fetch(API+'/api/data'),d=await r.json(),ex=d.findings||[];let ch=false;
+  items.forEach(item=>{if(!item.title||!item.title.trim())return;if(!ex.find(f=>f.title&&f.title.trim()===item.title.trim())){const nid=(ex.length>0?Math.max(...ex.map(f=>parseInt(f.id)||0)):0)+1;ex.push({id:nid,title:item.title,cat:sec==='internal'?'Operations':'Technology',status:'Open',days:0,flag:item.flag||'Management',risk:item.risk||'High',action:item.action||'',owner:item.owner||'',update:'',attachment:null});ch=true;}});
+  if(ch)await fetch(API+'/api/save/findings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(ex)});
+  }catch(e){console.log('syncAudit err',e);}
+}
+async function syncLegalToLitigation(enf){
+  try{const r=await fetch(API+'/api/data'),d=await r.json(),ex=d.litigation||[];let ch=false;
+  enf.forEach(item=>{if(!item.title||!item.title.trim())return;if(!ex.find(l=>l.case&&l.case.trim()===item.title.trim())){ex.push({case:item.title,year:new Date().getFullYear().toString(),type:'other',claim:item.detail||'',liability:'TBD',status:item.status||'Active'});ch=true;}});
+  if(ch)await fetch(API+'/api/save/litigation',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(ex)});
+  }catch(e){console.log('syncLegal err',e);}
 }
 
 async function clearSection(sec){
@@ -636,7 +653,7 @@ async function loadLiveView(){
 async function generateReport(){
   const res=await fetch(API+'/api/data');
   const d=await res.json();
-  const date=gv('report-date'),ytdTotal=gv('ytd-total'),ytdOpen=gv('ytd-open'),ytdClosed=gv('ytd-closed');
+  const date=gv('report-date'),ytdTotal=gv('ytd-total'),ytdOpen=gv('ytd-open'),ytdClosed=gv('ytd-closed'),ytdWip=parseInt(gv('ytd-wip'))||0;
   const incExec=document.getElementById('inc-exec').checked;
   const incRobot=document.getElementById('inc-robot').checked;
   const incInternal=document.getElementById('inc-internal').checked;
@@ -688,7 +705,7 @@ async function generateReport(){
     })() : '';
     return`<div class="exec-item" style="border-left:4px solid ${f.flag==='Board'?'#7c3aed':'#2563eb'};">
       <div class="exec-header" onclick="toggleExec('ex${i}','chex${i}')">
-        <span class="exec-badge ${f.flag==='Board'?'board':'mgmt'}">${f.flag.toUpperCase()}</span>
+        <span class="exec-badge ${f.type==='Achievement'?'achieve':f.flag==='Board'?'board':'mgmt'}">${(f.type||'Finding').toUpperCase()}</span> <span class="exec-badge ${f.flag==='Board'?'board':'mgmt'}">${f.flag.toUpperCase()}</span>
         <div class="exec-title">${f.title}</div>
         <span class="chevron" id="chex${i}">▼</span>
       </div>
@@ -762,7 +779,7 @@ async function generateReport(){
   }
 
   const findingsJS=`var findings=${JSON.stringify(findings)};var litigation=${JSON.stringify(litigation)};
-  function renderFindings(filter){var list=document.getElementById('findings-list');var filtered=findings.filter(function(f){if(filter==='all')return true;if(filter==='Board')return f.flag==='Board';return f.status===filter||f.cat===filter;});list.innerHTML=filtered.map(function(f){return '<div class="finding-item"><div class="finding-header" onclick="toggleFinding(\\'fb'+f.id+'\\',\\'fc'+f.id+'\\')"><div class="finding-num">'+f.id+'</div><div class="finding-title-text">'+f.title+'</div><div class="finding-meta"><span class="tag '+(f.status==='Closed'?'closed':'open')+'">'+f.status+'</span><span class="tag '+(f.flag==='Board'?'board2':'mgmt2')+'">'+f.flag+'</span>'+(f.days?'<span style="font-size:10px;color:#94a3b8">'+f.days+'d</span>':'')+(f.update?'<span style="font-size:9px;background:#f0fdf4;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:600;">Updated</span>':'')+'<span class="chevron" id="fc'+f.id+'">▼</span></div></div><div class="finding-body" id="fb'+f.id+'"><div class="finding-row"><div class="finding-field"><label>Risk</label><p>'+f.risk+'</p></div><div class="finding-field"><label>Recommended Action</label><p>'+f.action+'</p></div></div><div class="finding-field" style="margin-top:10px;"><label>Owner</label><p>'+f.owner+'</p></div>'+(f.update?'<div style="margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:8px 10px;font-size:11px;color:#15803d;"><strong>This Week:</strong> '+f.update+'</div>':'')+'</div></div>';}).join('');}
+  function renderFindings(filter){var list=document.getElementById('findings-list');var filtered=findings.filter(function(f){if(filter==='all')return true;if(filter==='Board')return f.flag==='Board';return f.status===filter||f.cat===filter;});list.innerHTML=filtered.map(function(f){return '<div class="finding-item"><div class="finding-header" onclick="toggleFinding(\\'fb'+f.id+'\\',\\'fc'+f.id+'\\')"><div class="finding-num">'+f.id+'</div><div class="finding-title-text">'+f.title+'</div><div class="finding-meta"><span class="tag '+(f.status==='Closed'?'closed':f.status==='Work In Progress'?'wip':'open')+'">'+f.status+'</span><span class="tag '+(f.flag==='Board'?'board2':'mgmt2')+'">'+f.flag+'</span>'+(f.days?'<span style="font-size:10px;color:#94a3b8">'+f.days+'d</span>':'')+(f.update?'<span style="font-size:9px;background:#f0fdf4;color:#15803d;padding:2px 6px;border-radius:4px;font-weight:600;">Updated</span>':'')+'<span class="chevron" id="fc'+f.id+'">▼</span></div></div><div class="finding-body" id="fb'+f.id+'"><div class="finding-row"><div class="finding-field"><label>Risk</label><p>'+f.risk+'</p></div><div class="finding-field"><label>Recommended Action</label><p>'+f.action+'</p></div></div><div class="finding-field" style="margin-top:10px;"><label>Owner</label><p>'+f.owner+'</p></div>'+(f.update?'<div style="margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:8px 10px;font-size:11px;color:#15803d;"><strong>This Week:</strong> '+f.update+'</div>':'')+'</div></div>';}).join('');}
   function filterFindings(filter,btn){document.querySelectorAll('.finding-filters .filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderFindings(filter);}
   function renderLit(filter){var list=document.getElementById('lit-list');var filtered=litigation.filter(function(l){return filter==='all'||l.type===filter;});list.innerHTML=filtered.map(function(l,i){return '<div class="lit-item"><div class="lit-header" onclick="toggleLitItem(\\'lb'+filter+i+'\\',\\'lch'+filter+i+'\\')"><div class="lit-dot '+l.type+'"></div><div class="lit-title-wrap"><h4>'+l.case+'</h4><p>Filed '+l.year+' · '+(l.type==='deduction'?'Over-deduction claim':l.type==='origination'?'Unauthorised loan origination':'Other claim')+'</p></div><span style="color:#64748b;font-size:11px;font-weight:700;margin-right:8px;flex-shrink:0;">'+l.liability+'</span><span class="chevron" id="lch'+filter+i+'">▼</span></div><div class="lit-body" id="lb'+filter+i+'"><div class="lit-grid"><div class="lit-field"><label>Claim</label><p>'+l.claim+'</p></div><div class="lit-field"><label>Liability</label><p>'+l.liability+'</p></div><div class="lit-field"><label>Current Status</label><p>'+l.status+'</p></div></div></div></div>';}).join('');}
   function filterLit(filter,btn){document.querySelectorAll('.finding-filters .filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderLit(filter);}
@@ -824,6 +841,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
 .exec-badge{padding:3px 10px;border-radius:99px;font-size:10px;font-weight:800;flex-shrink:0;margin-top:2px;}
 .exec-badge.mgmt{background:#dbeafe;color:#1d4ed8;}
 .exec-badge.board{background:#ede9fe;color:#6d28d9;}
+.exec-badge.achieve{background:#dcfce7;color:#15803d;}
 .exec-title{flex:1;font-size:13px;font-weight:700;color:#1e293b;line-height:1.4;}
 .exec-body{display:none;padding:0 16px 16px;font-size:12px;color:#475569;line-height:1.7;border-top:1px solid #f1f5f9;background:#fff;}
 .exec-body.open{display:block;}
@@ -856,6 +874,7 @@ body{font-family:'Segoe UI',sans-serif;background:#f0f4f8;color:#1e293b;min-heig
 .tag{padding:3px 8px;border-radius:99px;font-size:10px;font-weight:700;}
 .tag.open{background:#fee2e2;color:#b91c1c;}
 .tag.closed{background:#dcfce7;color:#15803d;}
+.tag.wip{background:#fef3c7;color:#d97706;}
 .tag.mgmt2{background:#dbeafe;color:#1d4ed8;}
 .tag.board2{background:#ede9fe;color:#6d28d9;}
 .finding-body{display:none;padding:0 16px 14px;border-top:1px solid #f1f5f9;}
@@ -967,9 +986,9 @@ ${incExec?`<div id="exec" class="section active">
   </div>
   ${insightsHTML}
   <div class="grid-3">
-    <div class="card blue"><div class="stat-val" style="color:#fff">${ytdTotal}</div><div class="stat-label white">Total YTD Action Items</div><div class="stat-sub white">${ytdOpen} Open · ${ytdClosed} Closed</div></div>
-    <div class="card lightblue"><div class="stat-val" style="color:#1e3a5f">${exec.length}</div><div class="stat-label">Management-level findings this week</div><div class="stat-sub">0 Board-level findings this week</div></div>
-    <div class="card"><div class="stat-val" style="color:#15803d">${exec.length}</div><div class="stat-label">Total findings / updates this period</div><div class="stat-sub">All flagged for Management reporting</div></div>
+    <div class="card blue"><div class="stat-val" style="color:#fff">${ytdTotal}</div><div class="stat-label white">Total YTD Action Items</div><div class="stat-sub white">${ytdOpen} Open · ${ytdClosed} Closed · ${ytdWip} In Progress</div></div>
+    <div class="card lightblue"><div class="stat-val" style="color:#1e3a5f">${exec.filter(f=>f.flag==='Management').length} | ${exec.filter(f=>f.flag==='Board').length}</div><div class="stat-label">Mgmt | Board — This Week</div><div class="stat-sub">Split by reporting level</div></div>
+    <div class="card" style="background:#fffbeb;border-color:#fde68a;"><div class="stat-val" style="color:#d97706">${ytdWip}</div><div class="stat-label" style="color:#92400e;">Work In Progress</div><div class="stat-sub" style="color:#92400e;">Actively being remediated</div></div>
   </div>
   <div class="blue-banner"><span class="icon">📋</span><span>This Week's Findings — Click Each to Expand</span></div>
   ${execHTML||'<p style="color:#94a3b8;font-size:12px;">No items submitted.</p>'}
@@ -984,7 +1003,8 @@ ${incExec?`<div id="exec" class="section active">
       </div>
       <div class="donut-legend">
         <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#c0392b;"></div><div><div class="donut-leg-label">Open</div><div class="donut-leg-sub">Requires resolution</div></div><div class="donut-leg-pct" style="color:#c0392b;">${ytdOpen} <span style="font-size:10px;color:#94a3b8;">(${Math.round(ytdOpen/ytdTotal*100)||0}%)</span></div></div>
-        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#059669;"></div><div><div class="donut-leg-label">Closed</div><div class="donut-leg-sub">Remediated & verified</div></div><div class="donut-leg-pct" style="color:#059669;">${ytdClosed} <span style="font-size:10px;color:#94a3b8;">(${Math.round(ytdClosed/ytdTotal*100)||0}%)</span></div></div>
+        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#059669;"></div><div><div class="donut-leg-label">Closed</div><div class="donut-leg-sub">Remediated & verified</div></div>
+        <div class="donut-leg-item"><div class="donut-leg-dot" style="background:#d97706;"></div><div><div class="donut-leg-label">In Progress</div><div class="donut-leg-sub">Actively being remediated</div></div><div class="donut-leg-pct" style="color:#d97706;">${ytdWip} <span style="font-size:10px;color:#94a3b8;">(${Math.round(ytdWip/ytdTotal*100)||0}%)</span></div></div><div class="donut-leg-pct" style="color:#059669;">${ytdClosed} <span style="font-size:10px;color:#94a3b8;">(${Math.round(ytdClosed/ytdTotal*100)||0}%)</span></div></div>
       </div>
     </div>
   </div>
@@ -1045,6 +1065,7 @@ ${incFindings?`<div id="findings" class="section">
     <button class="filter-btn" onclick="filterFindings('Operations',this)">Operations</button>
     <button class="filter-btn" onclick="filterFindings('Finance',this)">Finance</button>
     <button class="filter-btn" onclick="filterFindings('Board',this)">Board-Level</button>
+    <button class="filter-btn" onclick="filterFindings('Work In Progress',this)">⏳ In Progress</button>
   </div>
   <div id="findings-list"></div>
 </div>`:''}
@@ -1081,7 +1102,7 @@ function toggleLegal(b,c){tog(b,c);}
 ${findingsJS}
 window.addEventListener('load',function(){
   var co={color:'#64748b'};
-  ${incExec?`new Chart(document.getElementById('donutChart'),{type:'doughnut',data:{labels:['Open (${ytdOpen})','Closed (${ytdClosed})'],datasets:[{data:[${ytdOpen},${ytdClosed}],backgroundColor:['#c0392b','#059669'],borderWidth:0,hoverOffset:4}]},options:{plugins:{legend:{display:false}},cutout:'72%',animation:{animateRotate:true}}});`:''}
+  ${incExec?`new Chart(document.getElementById('donutChart'),{type:'doughnut',data:{labels:['Open','Closed','In Progress'],datasets:[{data:[${ytdOpen},${ytdClosed},${ytdWip}],backgroundColor:['#c0392b','#059669','#d97706'],borderWidth:0,hoverOffset:4}]},options:{plugins:{legend:{display:false}},cutout:'72%',animation:{animateRotate:true}}});`:''}
   new Chart(document.getElementById('themeChart'),{type:'bar',data:{labels:['Credential & Secrets (17)','Access Control (11)','Monitoring & Logging (10)','Loan Lifecycle & Ops (9)','Data Integrity (6)','Third-Party Risk (3)'],datasets:[{data:[17,11,10,9,6,3],backgroundColor:['#c0392b','#1e3a5f','#7c3aed','#d97706','#059669','#64748b'],borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{color:'#f0f4f8'}},y:{ticks:{color:'#475569',font:{size:10}},grid:{display:false}}}}});
   new Chart(document.getElementById('divisionChart'),{type:'bar',data:{labels:['Technology','Operations','Finance','Legal','People','Brand'],datasets:[{data:[59,21,14,8,4,2],backgroundColor:['#1e3a5f','#2563eb','#059669','#d97706','#7c3aed','#64748b'],borderRadius:4}]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{color:'#f0f4f8'}},y:{ticks:{color:'#475569',font:{size:10}},grid:{display:false}}}}});
   ${incFindings?`new Chart(document.getElementById('agingChart'),{type:'bar',data:{labels:['0–30 days','31–60 days','61–90 days','91–120 days','120+ days'],datasets:[{data:[8,19,6,4,7],backgroundColor:['#059669','#2563eb','#d97706','#c0392b','#7f1d1d'],borderRadius:4}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:co,grid:{display:false}},y:{ticks:co,grid:{color:'#f0f4f8'}}}}});renderFindings('all');`:''}
